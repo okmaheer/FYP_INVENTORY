@@ -1,0 +1,19 @@
+INSERT INTO supplier_products(
+    product_id,
+    supplier_id,
+    supplier_price
+)
+
+    SELECT
+        p.id,
+    	1,
+        p.price
+    FROM
+        products p
+    WHERE
+        p.id NOT IN(
+        SELECT
+            product_id
+        FROM
+            supplier_products
+    )

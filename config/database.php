@@ -35,6 +35,16 @@ return [
 
     'connections' => [
 
+
+        'local-database' => [
+            'driver' => 'mysql',
+            'host' => env('LOCAL_DB_HOST', 'localhost'),
+            'port' => env('LOCAL_DB_PORT', '3306'),
+            'database' => env('LOCAL_DB_DATABASE', 'devs_beta_account'),
+            'username' => env('LOCAL_DB_USERNAME', 'root'),
+            'password' => env('LOCAL_DB_PASSWORD', '')
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -44,6 +54,10 @@ return [
         ],
 
         'mysql' => [
+            'dump' => [
+                'dump_binary_path' => env('DB_MYSQL_DUMP_PATH', '/usr/bin'),
+                'timeout' => 60 * 5,
+            ],
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -60,6 +74,7 @@ return [
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                PDO::ATTR_EMULATE_PREPARES => true
             ]) : [],
         ],
 
