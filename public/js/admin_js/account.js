@@ -31,7 +31,7 @@
           var tabindex = count * 2;
           newdiv = document.createElement("tr");
 
-          newdiv.innerHTML ="<td  width='400'> <select name='cmbCode[]' id='cmbCode_"+ count +"' class='form-control' onchange='load_dbtvouchercode(this.value,"+ count +")' required></select></td><td><input type='text' name='txtCode[]' class='form-control'  id='txtCode_"+ count +"' readonly tabindex='-1'></td><td><input type='number' step='any' min='1' autocomplete='off' name='txtAmount[]' class='form-control total_price text-right' id='txtAmount_"+ count +"' onkeyup='dbtvouchercalculation("+ count +")' required></td><td><button class='btn btn-danger red' type='button'  onclick='deleteRowdbtvoucher(this)'><i class='fa fa-trash'></i></button></td>";
+          newdiv.innerHTML ="<td  width='200'> <select name='cmbCode[]' id='cmbCode_"+ count +"' class='form-control' onchange='load_dbtvouchercode(this.value,"+ count +")' required></select></td><td><input type='text' name='txtCode[]' class='form-control'  id='txtCode_"+ count +"' readonly></td><td><input type='number' name='txtAmount[]' class='form-control total_price text-right' id='txtAmount_"+ count +"' onkeyup='dbtvouchercalculation("+ count +")' required></td><td><button class='btn btn-danger red' type='button'  onclick='deleteRowdbtvoucher(this)'><i class='fa fa-trash'></i></button></td>";
           document.getElementById(divName).appendChild(newdiv);
           document.getElementById(tabin).focus();
            $("#cmbCode_"+count).html(optionval);
@@ -39,6 +39,7 @@
 
           $("select.form-control:not(.dont-select-me)").select2({
               placeholder: "Select option",
+              allowClear: true
           });
         }
     }
@@ -71,28 +72,28 @@ function dbtvouchercalculation(sl) {
 
     "use strict";
     function addaccountContravoucher(divName){
+    var optionval = $("#headoption").val();
+    var row = $("#debtAccVoucher tbody tr").length;
+    var count = row + 1;
+    var limits = 500;
+    var tabin = 0;
+    if (count == limits) alert("You have reached the limit of adding " + count + " inputs");
+    else {
+          var newdiv = document.createElement('tr');
+          var tabin="cmbCode_"+count;
+          var tabindex = count * 2;
+          newdiv = document.createElement("tr");
 
-        var optionval = $("#headoption").val();
-        var row = $("#debtAccVoucher tbody tr").length;
-        var count = row + 1;
-        var limits = 500;
-        var tabin = 0;
-        if (count == limits) alert("You have reached the limit of adding " + count + " inputs");
-        else {
-            var newdiv = document.createElement('tr');
-            var tabin="cmbCode_"+count;
-            var tabindex = count * 2;
-            newdiv = document.createElement("tr");
+          newdiv.innerHTML ="<td> <select name='cmbCode[]' id='cmbCode_"+ count +"' class='form-control' onchange='load_dbtvouchercode(this.value,"+ count +")' required></select></td><td><input type='text' name='txtCode[]' class='form-control'  id='txtCode_"+ count +"' ></td><td><input type='number' name='txtAmount[]' class='form-control total_price text-right' value='0' id='txtAmount_"+ count +"' onkeyup='calculationContravoucher("+ count +")'></td><td><input type='number' name='txtAmountcr[]' class='form-control total_price1 text-right' id='txtAmount1_"+ count +"' value='0' onkeyup='calculationContravoucher("+ count +")'></td><td><button  class='btn btn-danger red' type='button'  onclick='deleteRowContravoucher(this)'><i class='fa fa-trash'></i></button></td>";
+          document.getElementById(divName).appendChild(newdiv);
+          document.getElementById(tabin).focus();
+           $("#cmbCode_"+count).html(optionval);
+          count++;
 
-            newdiv.innerHTML ="<td> <select name='cmbCode[]' id='cmbCode_"+ count +"' class='form-control' onchange='load_dbtvouchercode(this.value,"+ count +")' required></select></td><td><input type='text' name='txtCode[]' class='form-control'  id='txtCode_"+ count +"' readonly tabindex='-1'></td><td><input type='number' step='any' min='0' name='txtAmount[]' class='form-control total_price text-right' id='txtAmount_"+ count +"' onkeyup='calculationContravoucher("+ count +")' autocomplete='off'></td><td><input type='number' step='any' min='0' name='txtAmountcr[]' class='form-control total_price1 text-right' id='txtAmount1_"+ count +"' onkeyup='calculationContravoucher("+ count +")' autocomplete='off'></td><td><button  class='btn btn-danger red' type='button'  onclick='deleteRowContravoucher(this)'><i class='fa fa-trash'></i></button></td>";
-            document.getElementById(divName).appendChild(newdiv);
-            document.getElementById(tabin).focus();
-            $("#cmbCode_"+count).html(optionval);
-            count++;
-
-            $("select.form-control:not(.dont-select-me)").select2({
-                placeholder: "Select option",
-            });
+          $("select.form-control:not(.dont-select-me)").select2({
+              placeholder: "Select option",
+              allowClear: true
+          });
         }
     }
 

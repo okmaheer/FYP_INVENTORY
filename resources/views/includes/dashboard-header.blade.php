@@ -3,12 +3,12 @@
        <div class="topbar-left">
            <a href="{{ route('dashboard') }}" class="logo">
                <span>
-                   <img src="{{ asset('uploads/settings/deskbook.png' ) }}" alt="Deskbook ERP" style="height:75px; width:175px;">
+                   <img src="{{ asset(Helper::settings()->logo) }}" alt="logo-large" class="logo-lg">
                </span>
            </a>
        </div>
        <ul class="list-unstyled topbar-nav float-right mb-0">
-           {{--<li class="dropdown">
+           <li class="dropdown">
                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
                    <i class="mdi mdi-bell-outline nav-icon"></i>
@@ -51,34 +51,36 @@
                        View all <i class="fi-arrow-right"></i>
                    </a>
                </div>
-           </li>--}}
+           </li>
 
            <li class="dropdown">
                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
-                   @if(file_exists(auth()->user()->avatar))
-                       <img src="{{ asset(auth()->user()->avatar) }}" alt="profile-user" class="rounded-circle border" />
-                   @else
-                       <img src="{{ asset('images/user.png') }}" alt="profile-user" class="rounded-circle border" />
-                   @endif
+                   <img src="{{ asset('dashboard/images/users/user-1.jpg') }}" alt="profile-user" class="rounded-circle" />
                    <span class="ml-1 nav-user-name hidden-sm"> <i class="mdi mdi-chevron-down"></i> </span>
                </a>
                <div class="dropdown-menu dropdown-menu-right">
                    <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
-                   @if(!auth()->user()->hasRole(\RoleEnum::ROLE_SUPER_ADMIN))
-                       @can('softwareSettings', \App\Models\Setting::class)
-                       <a class="dropdown-item" href="{{ route('dashboard.accounts.location-settings') }}"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
-                       @endcan
-                   @endif
+                   <a class="dropdown-item" href="{{ route('dashboard.accounts.settings.index') }}"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
                    <div class="dropdown-divider"></div>
-                   <form method="post" action="{{ route('logout') }}" id="logoutForm">
-                       @csrf
+                   <form method="post" action="{{ route('logout') }}">
+                       {{ csrf_field() }}
+                       <button type="submit" class="dropdown-item">
+                           <i class="dripicons-exit text-muted mr-2"></i>Logout</button>
                    </form>
-                   <button type="button" class="dropdown-item" onclick="LogoutConfirm();">
-                       <i class="dripicons-exit text-muted mr-2"></i>Logout</button>
                </div>
            </li>
-
+           <li class="menu-item">
+               <!-- Mobile menu toggle-->
+               <a class="navbar-toggle nav-link" id="mobileToggle">
+                   <div class="lines">
+                       <span></span>
+                       <span></span>
+                       <span></span>
+                   </div>
+               </a>
+               <!-- End mobile menu toggle-->
+           </li>
        </ul>
        <ul class="list-unstyled topbar-nav mb-0">
 
@@ -90,7 +92,7 @@
     </ul>
 
 
-       {{--<ul class="list-unstyled topbar-nav mb-0">
+       <ul class="list-unstyled topbar-nav mb-0">
            <li class="hide-phone app-search">
                <form role="search" class="">
                    <input type="text" placeholder="Search..." class="form-control">
@@ -98,7 +100,7 @@
                </form>
            </li>
 
-       </ul>--}}
+       </ul>
 
    </nav>
    <!-- end navbar-->

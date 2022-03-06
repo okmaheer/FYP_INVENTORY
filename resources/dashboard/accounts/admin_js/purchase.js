@@ -349,7 +349,7 @@ $(document).ready(function() {
             className: "btn-sm prints"
         }, {
             extend: "csv",
-            title: "PurchaseList",
+            title: "PurchaseLIst",
             exportOptions: {
                 columns: [0, 1, 2, 3, 4, 5] //Your Colume value those you want print
             },
@@ -359,21 +359,21 @@ $(document).ready(function() {
             exportOptions: {
                 columns: [0, 1, 2, 3, 4, 5] //Your Colume value those you want print
             },
-            title: "PurchaseList",
+            title: "PurchaseLIst",
             className: "btn-sm prints"
         }, {
             extend: "pdf",
             exportOptions: {
                 columns: [0, 1, 2, 3, 4, 5] //Your Colume value those you want print
             },
-            title: "PurchaseList",
+            title: "PurchaseLIst",
             className: "btn-sm prints"
         }, {
             extend: "print",
             exportOptions: {
                 columns: [0, 1, 2, 3, 4, 5] //Your Colume value those you want print
             },
-            title: "<center> PurchaseList</center>",
+            title: "<center> PurchaseLIst</center>",
             className: "btn-sm prints"
         }],
 

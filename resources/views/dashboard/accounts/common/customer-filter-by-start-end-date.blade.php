@@ -1,54 +1,50 @@
-{!! Form::open(['method' => 'GET' ,'route' =>$route, 'files' => true] ) !!}
-<div class="card-header bg-white">
-    <div class="row col-12">
-        <h4 class="col-6">Search Record By</h4>
-        <div class="col-lg-6 text-right">
-            <div class="btn-group">
-                {!! Form::submit('Search', ['class' => 'btn btn-primary w-sm']) !!}
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span> <i class="mdi mdi-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    {!! Form::button('Print', ['class' => 'dropdown-item', 'id' => "printBtn"]) !!}
-                    <a href="{{ route($route) }}" class="dropdown-item">Clear</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="card-body">
-    <div class="row col-12">
-        <div class="col-md-4">
-            <div class="form-group">
-                {!!  Form::label('customer_id' ,'Customer' ,['class'=>'col-form-label text-right'])   !!}
-                {!!  Form::select('customer_id',$customer,request()->has('customer_id')?request()->get('customer_id'):null,['id'=>'customer_id',
-                    'class'=>'select2 form-control', 'style'=>'width:100%',
+    {!! Form::open(['method' => 'GET' ,'route' =>$route, 'files' => true] ) !!}
+    <div class="row">
+        <div class="col-md-3 mr-2">
+            <div class="form-group row">
+                <h6 class="input-title mt-0 md-3">Customer<i class="text-danger">*</i></h6>
+                    {!!  Form::select('customer_id',$customer,null,['id'=>'customer_id',
+                    'class'=>'select2 form-control mb-3 custom-select float-right',
                     'placeholder'=>'Select Customer'])
-               !!}
+                   !!}
                 </div>
+
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {!!  Form::label('start_date' ,'Start Date' ,['class'=>'col-form-label text-right'])   !!}
-                <div class="input-group">
-                    {!!  Form::text('start_date',request()->has('start_date')?request()->get('start_date'):null,['id'=>'start_date','class'=>'form-control datepicker','autocomplete'=>'off']) !!}
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    </div>
-                </div>
+        <div class="col-lg-3 mr-2">
+            <div class="form-group row">
+
+                <h6 class="input-title mt-0 md-3">Start Date</h6>
+
+
+
+                    {!!  Form::date('start_date',request()->has('start_date')?request()->get('start_date'):\Carbon\Carbon::now(),['id'=>'start_date','class'=>'form-control ','placeholder'=>'2021-04-03']) !!}
+
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {!!  Form::label('end_date' ,'End Date' ,['class'=>'col-form-label text-right'])   !!}
-                <div class="input-group">
-                    {!!  Form::text('end_date',request()->has('end_date')?request()->get('end_date'):null,['id'=>'end_date','class'=>'form-control datepicker','autocomplete'=>'off']) !!}
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    </div>
-                </div>
+        <div class="col-lg-3 mr-2">
+            <div class="form-group row">
+
+                <h6 class="input-title mt-0 md-3">End Date</h6>
+
+
+                    {!!  Form::date('end_date',request()->has('end_date')?request()->get('end_date'):\Carbon\Carbon::now(),['id'=>'end_date','class'=>'form-control ','placeholder'=>'2021-04-03']) !!}
+
+            </div>
+        </div>
+
+        <div class="col-lg-1 mt-4 ml-4">
+            <div class="form-group row">
+                {!! Form::submit('Search', array('class' => 'btn btn-success')) !!}
+
+            </div>
+        </div>
+        <div class="col-lg-1 mt-4 ml-2">
+            <div class="form-group row">
+                {!! Form::submit('Print', array('class' => 'btn btn-warning')) !!}
+
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
 </div>
-{!! Form::close() !!}

@@ -85,7 +85,7 @@
     </div><!-- container -->
     @include('includes.dashboard-footer')
 </div>
-@endsection
+@endsection 
 @endsection
 
 @section('innerScriptFiles')
@@ -107,7 +107,7 @@
         $(document).ready(function () {
             $('#datatable').DataTable({
                 responsive: true,
-                "pageLength": 10,
+                "pageLength": 50,
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 "columnDefs": [
                     {"orderable": false, "targets": [0, 1]}
@@ -122,7 +122,7 @@
                         "extend": 'csv',
                         "text": '<i class="fa fa-file-excel"></i> Export',
                         "titleAttr": 'CSV',
-                        className: 'btn bg-primary btn-sm mx-1 datatable-btn',
+                        className: 'btn bg-info btn-sm mx-1 datatable-btn',
                         "filename": function () {
                             var d = new Date();
                             var n = d.getTime();
@@ -135,7 +135,7 @@
                     }
                     , {
                         text: '<i class="fa fa-plus-circle"></i> Create',
-                        className: 'btn bg-primary btn-sm mx-1 datatable-btn',
+                        className: 'btn bg-info btn-sm mx-1 datatable-btn',
                         action: function (dt, node, config) {
                             window.location = '{{ route('dashboard.accounts.permissions.create') }}';
                         }

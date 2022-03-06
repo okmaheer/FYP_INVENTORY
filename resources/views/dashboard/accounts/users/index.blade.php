@@ -1,11 +1,14 @@
 @extends('layouts.dashboard')
-@section('page_title', $page_title)
-@section('innerStyleSheet')
-    @include('includes.datatable-css')
-    <link href="{{ asset('dashboard/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
+@section('page_title')
 @section('content')
-
+@section('innerStyleSheet')
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/plugins/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/plugins/datatables/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/plugins/datatables/responsive.bootstrap4.min.css') }}">
+@endsection
 @include('includes.dashboard-breadcrumbs')
 
 @section('body')
@@ -14,7 +17,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    @include('includes.messages')
                     <div class="card-body">
                         <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -22,12 +24,12 @@
                             <tr>
                                 <th class="no-sort"></th>
                                 <th class="text-center no-sort">Action</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Roles</th>
-                                <th>PettyCash Account</th>
-                                <th>Created Date</th>
+                                <th>Created Data</th>
                                 <th>Last Update</th>
                             </tr>
                             </thead>
@@ -43,46 +45,43 @@
                                             <div class="dropdown-menu dropdown-menu-left"
                                                  aria-labelledby="dLabel8" x-placement="top-end"
                                                  style="position: absolute; transform: translate3d(-121px, -72px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <form action="{{ route('dashboard.accounts.users.destroy',$user->id) }}"  method="POST" id="deleteForm{{ $user->id }}">
+                                                <form
+                                                    action="{{ route('dashboard.accounts.users.destroy',$user->id) }}"
+                                                    method="POST">
+                                                    {!! link_to_route('dashboard.accounts.users.edit', "Edit", $user->id, ['class' => 'dropdown-item']) !!}
                                                     @csrf
                                                     @method('DELETE')
-                                                </form>
-                                                @can('edit', \App\Models\User::class)
-                                                    <a href="{{ route('dashboard.accounts.users.edit', $user->id) }}" class="dropdown-item"><i class="fa fa-edit"></i> Edit</a>
-                                                @endcan
-                                                @can('delete', \App\Models\User::class)
-                                                    @if ($user->id > 2)
-                                                    <button type="button" class="dropdown-item" onclick="DeleteEntry({{ $user->id }});">
-                                                        <i class="fa fa-trash"></i> Delete
+                                                    <button type="submit" class="dropdown-item"
+                                                            onclick="return confirm('Are you sure you want to delete this item?');">
+                                                        Delete
                                                     </button>
-                                                    @endif
-                                                @endcan
+                                                </form>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $user->id }}
                                     </td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td class="text-center">
-                                        <h4>
                                         @if($user->active)
-                                            <span class="badge badge-success">Active</span>
+                                            <span class="btn btn-xs btn-success">Active</span>
                                         @else
-                                            <span class="badge badge-danger">InActive</span>
+                                            <span class="btn btn-xs btn-danger">InActive</span>
                                         @endif
-                                        </h4>
                                     </td>
                                     <td>
                                         @if ($user->roles)
-                                            <select class="form-control select2" style="width:100%">
+                                            <ul>
                                                 @foreach($user->roles as $role)
-                                                    <option>{{$role->label}}</option>
+                                                    <li>{{$role->label}}</li>
                                                 @endforeach
-                                            </select>
+                                            </ul>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $user->is_PettyCash ? 'Yes' : 'No' }}</td>
-                                    <td>{{ \AccountHelper::date_format( $user->created_at ) }}</td>
-                                    <td>{{ \AccountHelper::date_format( $user->updated_at ) }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $user->updated_at }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -94,17 +93,62 @@
     </div><!-- container -->
     @include('includes.dashboard-footer')
 </div>
-@endsection
+@endsection 
 @endsection
 @section('innerScriptFiles')
-    @include('includes.datatable-js')
-    <script src="{{ asset('dashboard/plugins/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('dashboard//plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 @endsection
 @section('innerScript')
-    @include('includes.datatable-init', ['table' => 'datatable', 'create' => 'dashboard.accounts.users.create'])
     <script>
         $(document).ready(function () {
-            $('.select2').select2();
+            $('#datatable').DataTable({
+                responsive: true,
+                "pageLength": 50,
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "columnDefs": [
+                    {"orderable": false, "targets": [0, 1]}
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Global Search....."
+                },
+                dom: 'Bfrtip',
+                "buttons": [
+                    {
+                        "extend": 'csv',
+                        "text": '<i class="fa fa-file-excel"></i> Export',
+                        "titleAttr": 'CSV',
+                        className: 'btn bg-info btn-sm mx-1 datatable-btn',
+                        "filename": function () {
+                            var d = new Date();
+                            var n = d.getTime();
+                            return 'users_' + n;
+                        },
+                        "footer": true,
+                        exportOptions: {
+                            columns: ':not(.noExport)'
+                        }
+                    }
+                    , {
+                        text: '<i class="fa fa-plus-circle"></i> Create',
+                        className: 'btn bg-info btn-sm mx-1 datatable-btn',
+                        action: function (dt, node, config) {
+                            window.location = '{{ route('dashboard.accounts.users.create') }}';
+                        }
+                    }
+                ],
+            });
         });
     </script>
 @endsection

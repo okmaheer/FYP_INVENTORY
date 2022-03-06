@@ -1,11 +1,10 @@
 @extends('layouts.dashboard')
-@section('page_title', $page_title)
-@section('innerStyleSheet')
-    <link rel="stylesheet" href="{{ asset('dashboard/plugins/dropify/css/dropify.min.css') }}">
-    <link href="{{ asset('dashboard/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
-@endsection
+@section('page_title')
 @section('content')
-
+@section('innerStyleSheet')
+<link rel="stylesheet" href="{{ asset('dashboard/plugins/dropify/css/dropify.min.css') }}">
+<link href="{{ asset('dashboard/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
 @include('includes.dashboard-breadcrumbs')
 
 @section('body')
@@ -15,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {!! Form::model($model, ['route' => ['dashboard.accounts.users.update', $model->id], 'method' => 'PUT', 'files' => true, 'class' => 'solid-validation'] ) !!}
+                        {!! Form::model($model, ['route' => ['dashboard.accounts.users.update', $model->id], 'method' => 'PUT', 'files' => true] ) !!}
                         {!! csrf_field() !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Name') !!}
@@ -26,15 +25,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            {!! Form::label('email', 'Email') !!}
-                            {!! Form::email('email', null, ['class' => 'form-control', 'required', 'id' => 'email','placeholder'=>'test@gmail.com']) !!}
+                            {!! Form::label('email', 'Email/UserName') !!}
+                            {!! Form::text('email', null, ['class' => 'form-control', 'required', 'id' => 'email','placeholder'=>'test@gmail.com']) !!}
                             @error('email')
                             <span class="invalid-feedback d-block"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            {!! Html::decode(Form::label('password', 'Password <small>(Leave empty if do not want to change)</small>')) !!}
+                            {!! Form::label('password', 'Password') !!}
                             {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
                             @error('password')
                             <span class="invalid-feedback d-block"
@@ -48,17 +47,17 @@
                         <div class="form-group">
                             {!! Form::label('roles', 'Roles') !!}
                             {!! Form::select('roles[]', $roles, null, array('id' => 'roles',
-                                'class' => 'form-control', 'style' => 'width: 100%;','required','multiple')) !!}
+                            'class' => 'form-control selectpicker show-menu-arrow', 'data-live-search' => 'true', 'data-selected-text-format' => 'count > 3',
+                            'data-size' => '10', 'data-actions-box' => 'true','data-placeholder'=>'Select Roles','required','multiple')) !!}
                         </div>
-                        <div class="form-group custom-control custom-checkbox">
-                            {!! Form::checkbox('active',$model->active?1:0,$model->active?1:0,['id'=>'active']) !!}
+                        <div class="form-group">
+                            {!! Form::checkbox('active',$model->active?1:null,$model->active?"1":"0",['id'=>'active']) !!}
                             {!! Form::label('active','Is Active') !!}
                         </div>
-                        <div class="form-group custom-control custom-checkbox">
-                            {!! Form::checkbox('is_PettyCash',$model->is_PettyCash?1:0,$model->is_PettyCash?1:0,['id'=>'is_PettyCash']) !!}
-                            {!! Form::label('is_PettyCash','Is PettyCash Account') !!}
+                        <div class="form-group text-right">
+                            {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
+                            <button type="button" class="btn btn-danger">Cancel</button>
                         </div>
-                        @include('dashboard.accounts.common.buttons.buttons-crud', ['update' => true, 'cancel' => true, 'cancel_route' => 'dashboard.accounts.users.index'])
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -66,7 +65,7 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 
 @endsection
 @section('innerScriptFiles')
     <script src="{{ asset('dashboard/plugins/tinymce/tinymce.min.js') }}"></script>

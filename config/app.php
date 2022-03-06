@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'Asia/Karachi'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     */
 
     'locale' => 'en',
-    'available_locales' => ['en', 'ur'],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -231,12 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
-        //Account ERP Aliases
-        'CacheEnum' => App\Enum\CacheEnum::class,
-        'SessionEnum' => App\Enum\SessionEnum::class,
-        'RoleEnum' => App\Enum\RoleEnum::class,
     ],
 
 ];

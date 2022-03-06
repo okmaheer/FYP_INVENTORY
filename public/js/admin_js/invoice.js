@@ -1,6 +1,3 @@
-let tax_type = 0;
-let tax_value = 0;
-
 //Add Input Field Of Row
 "use strict";
 
@@ -44,21 +41,20 @@ function addInputField_invoice(t) {
         tab10 = tabindex + 10;
         tab11 = tabindex + 11;
         tab12 = tabindex + 12;
-        e.innerHTML = "<td><input type='text' name='product_name' onkeypress='invoice_productList(" + count + ");' class='form-control product_name common_product' placeholder='Product Name' id='" + a + "' required tabindex='" + tab1 + "' autocomplete='off'><input type='hidden' class='common_product autocomplete_hidden_value  product_id_" + count + "' name='product_id[]' id='SchoolHiddenId'/></td><td><input type='text' name='desc[]'' class='form-control text-right ' tabindex='" + tab2 + "'/></td><td><input type='text' name='available_quantity[]' id='available_quantity_" + count + "' class='form-control text-right common_avail_qnt available_quantity_" + count + "' value='0' readonly tabindex='-1'/></td><td> <input type='number' step='any' min='1' autocomplete='off' name='product_quantity[]' required='required' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='total_qntt_" + count + "' class='common_qnt total_qntt_" + count + " form-control text-right'  placeholder='0.00' min='0' tabindex='" + tab3 + "'/></td><td><input type='number' step='any' min='1' autocomplete='off' name='product_rate[]' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='price_item_" + count + "' class='common_rate price_item" + count + " form-control text-right' required placeholder='0.00' min='0' tabindex='" + tab4 + "'/><input type='hidden' name='supplier_rate[]' id='supplier_rate_" + count + "'/></td><td><input type='number' step='any' min='0' autocomplete='off' name='discount[]' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='discount_" + count + "' class='form-control text-right common_discount' placeholder='0.00' min='0' tabindex='" + tab5 + "' /><input type='hidden' value='' name='discount_type' id='discount_type_" + count + "'></td><td class= 'text-right'><input class='form-control text-right' type='number' step='any' min='0' autocomplete='off' name='tax_p[]' id='tax_" + count + "'onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");'></td><td class='text-right'><input class='common_total_price total_price form-control text-right' type='text' name='total_price[]' id='total_price_" + count + "' value='0.00' readonly tabindex='-1'/></td><td>" + tbfild + "<input type='hidden' id='all_discount_" + count + "' class='total_discount dppr' name='discount_amount[]'/><input type='hidden' id='all_tax_" + count + "' class='total_tax ' name='tax_amount[]'/><button tabindex='" + tab5 + "' style='text-align: right;' class='btn btn-danger' type='button' value='Delete' onclick='deleteRow_invoice(this)'><i class='fas fa-times'></i></button></td>",
+        e.innerHTML = "<td><input type='text' name='product_name' onkeypress='invoice_productList(" + count + ");' class='form-control product_name common_product' placeholder='Product Name' id='" + a + "' required tabindex='" + tab1 + "'><input type='hidden' class='common_product autocomplete_hidden_value  product_id_" + count + "' name='product_id[]' id='SchoolHiddenId'/></td><td><input type='text' name='desc[]'' class='form-control text-right ' tabindex='" + tab2 + "'/></td><td><input type='text' name='available_quantity[]' id='available_quantity_" + count + "' class='form-control text-right common_avail_qnt available_quantity_" + count + "' value='0' readonly='readonly' /></td><td> <input type='text' name='product_quantity[]' required='required' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='total_qntt_" + count + "' class='common_qnt total_qntt_" + count + " form-control text-right'  placeholder='0.00' min='0' tabindex='" + tab3 + "'/></td><td><input type='text' name='product_rate[]' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='price_item_" + count + "' class='common_rate price_item" + count + " form-control text-right' required placeholder='0.00' min='0' tabindex='" + tab4 + "'/><input type='hidden' name='supplier_rate[]' id='supplier_rate_" + count + "'/></td><td><input type='text' name='discount[]' onkeyup='invoice_quantity_calculate(" + count + ");' onchange='invoice_quantity_calculate(" + count + ");' id='discount_" + count + "' class='form-control text-right common_discount' placeholder='0.00' min='0' tabindex='" + tab5 + "' /><input type='hidden' value='' name='discount_type' id='discount_type_" + count + "'></td><td class='text-right'><input class='common_total_price total_price form-control text-right' type='text' name='total_price[]' id='total_price_" + count + "' value='0.00' readonly='readonly'/></td><td>" + tbfild + "<input type='hidden' id='all_discount_" + count + "' class='total_discount dppr' name='discount_amount[]'/><button tabindex='" + tab5 + "' style='text-align: right;' class='btn btn-danger' type='button' value='Delete' onclick='deleteRow_invoice(this)'><i class='fas fa-times'></i></button></td>",
             document.getElementById(t).appendChild(e),
             document.getElementById(a).focus(),
             document.getElementById("add_invoice_item").setAttribute("tabindex", tab6);
-        // document.getElementById("details").setAttribute("tabindex", tab7);
+        document.getElementById("details").setAttribute("tabindex", tab7);
         document.getElementById("invoice_discount").setAttribute("tabindex", tab8);
         document.getElementById("shipping_cost").setAttribute("tabindex", tab9);
         document.getElementById("paidAmount").setAttribute("tabindex", tab10);
-        // document.getElementById("full_paid_tab").setAttribute("tabindex", tab11);
-        // document.getElementById("add_invoice").setAttribute("tabindex", tab12);
+        document.getElementById("full_paid_tab").setAttribute("tabindex", tab11);
+        document.getElementById("add_invoice").setAttribute("tabindex", tab12);
         count++
     }
 }
-
-
+//Quantity calculat
 "use strict";
 
 function invoice_quantity_calculate(item) {
@@ -67,12 +63,8 @@ function invoice_quantity_calculate(item) {
     var price_item = $("#price_item_" + item).val();
     var invoice_discount = $("#invoice_discount").val();
     var discount = $("#discount_" + item).val();
-    var tax = $("#tax_" + item).val();
     var total_discount = $("#total_discount_" + item).val();
     var dis_type = 1;
-
-    // /* Turn this block on when inventory module is active
-
     if (parseInt(quantity) > parseInt(available_quantity)) {
         var message = "You can Sale maximum " + available_quantity + " Items";
         // toastr["error"](message);
@@ -83,19 +75,13 @@ function invoice_quantity_calculate(item) {
 
     }
 
-    if (quantity > 0 || discount > 0 || tax) {
+    if (quantity > 0 || discount > 0) {
         if (dis_type == 1) {
             var price = quantity * price_item;
-            var tax = +(price * tax / 100);
-            var discount_price = quantity * price_item +tax;
-
-
-            var dis = +(discount_price * discount / 100);
-
+            var dis = +(price * discount / 100);
             $("#all_discount_" + item).val(dis);
-            $("#all_tax_" + item).val(tax);
             //Total price calculate per product
-            var temp = price - dis + tax;
+            var temp = price - dis;
             $("#total_price_" + item).val(temp);
 
 
@@ -128,19 +114,9 @@ function invoice_quantity_calculate(item) {
         // var c = quantity * price_item * total_tax;
         $("#total_price_" + item).val(n)
     }
-    var t = 0;
-    $(".total_price").each(function() {
-        isNaN(this.value) || 0 == this.value.length || (t += parseFloat(this.value))
-    });
-    e = t.toFixed(2);
-    var test = e;
-      $("#grandTotal").val(test);
-
-
     invoice_calculateSum();
     invoice_paidamount();
 }
-
 //Calculate Sum
 "use strict";
 
@@ -158,72 +134,47 @@ function invoice_calculateSum() {
         s_cost = $("#shipping_cost").val();
 
     //Total Discount
-    $(".total_discount").each(function () {
-        isNaN(this.value) || 0 == this.value.length || (p += parseFloat(this.value))
-    }),
+    $(".total_discount").each(function() {
+            isNaN(this.value) || 0 == this.value.length || (p += parseFloat(this.value))
+        }),
         $("#total_discount_ammount").val(p.toFixed(2, 2)),
 
+
         //Total Price
-        $(".total_price").each(function () {
+        $(".total_price").each(function() {
             isNaN(this.value) || 0 == this.value.length || (t += parseFloat(this.value))
         }),
 
-        $(".dppr").each(function () {
+        $(".dppr").each(function() {
             isNaN(this.value) || 0 == this.value.length || (ad += parseFloat(this.value))
         }),
 
-        o = a.toFixed(2),
-        e = t.toFixed(2),
-        tx = f.toFixed(2),
-        ds = p.toFixed(2);
+        o = a.toFixed(2, 2),
+        e = t.toFixed(2, 2),
+        tx = f.toFixed(2, 2),
+        ds = p.toFixed(2, 2);
 
-        var test = +tx + +s_cost + +e + -ds + +ad;
-
-    console.log(tx);
-    console.log(tx);
-    console.log(s_cost);
-    console.log(e);
-        console.log(ds);
-        console.log(ad);
+    var test = +tx + +s_cost + +e + -ds + +ad;
+    $("#grandTotal").val(test.toFixed(2, 2));
 
 
-
+    var gt = $("#grandTotal").val();
     var invdis = $("#invoice_discount").val();
     var total_discount_ammount = $("#total_discount_ammount").val();
     var ttl_discount = +total_discount_ammount;
-    $("#total_discount_ammount").val(ttl_discount.toFixed(2));
-    // invoice_paidamount();
+    $("#total_discount_ammount").val(ttl_discount.toFixed(2, 2));
+    var grnt_totals = gt;
+    invoice_paidamount();
+    $("#grandTotal").val(grnt_totals);
 
-    let net_total = test;
-    let tax_amount = 0;
 
-    if (tax_type === 2) { //tax in percent
-        tax_amount = Number(((test * tax_value) / 100));
-    } else { //fix tax
-        tax_amount = Number(tax_value);
-    }
-    $('#total_tax').val(tax_amount.toFixed(2));
-
-    net_total = test + tax_amount;
-    $("#n_total").val(net_total);
-
-    var paid_amount = Number($("#paidAmount").val());
-    var due_amount = net_total - paid_amount;
-
-    if (paid_amount > net_total) {
-        $('#change').val((paid_amount - net_total).toFixed(2));
-        $('#dueAmmount').val('0.00');
-    } else {
-        $('#change').val('0.00');
-        $('#dueAmmount').val(due_amount.toFixed(2));
-    }
 }
 
 //Invoice Paid Amount
 "use strict";
 
 function invoice_paidamount() {
-    var prb = parseFloat($("#previous").val());
+    var prb = parseFloat($("#previous").val(), 10);
     var pr = 0;
     var d = 0;
     var nt = 0;
@@ -236,11 +187,11 @@ function invoice_paidamount() {
         a = $("#paidAmount").val(),
         e = t - a,
         f = e + pr,
-        nt = parseFloat(t) + pr;
+        nt = parseFloat(t, 10) + pr;
     d = a - nt;
-    // $("#n_total").val(nt.toFixed(2));
+    $("#n_total").val(nt.toFixed(2, 2));
     if (f > 0) {
-        $("#dueAmmount").val(f.toFixed(2));
+        $("#dueAmmount").val(f.toFixed(2, 2));
         if (a <= f) {
             $("#change").val(0);
         }
@@ -271,7 +222,7 @@ function stockLimit(t) {
             product_id: e
         },
         cache: !1,
-        success: function (e) {
+        success: function(e) {
             alert(e);
             if (a > Number(e)) {
                 var o = "You can Sale maximum " + e + " Items";
@@ -305,43 +256,45 @@ function deleteRow_invoice(t) {
             invoice_calculateSum();
         invoice_paidamount();
         var current = 1;
-        $("#normalinvoice > tbody > tr td input.productSelection").each(function () {
+        $("#normalinvoice > tbody > tr td input.productSelection").each(function() {
             current++;
             $(this).attr('id', 'product_name' + current);
         });
         var common_qnt = 1;
-        $("#normalinvoice > tbody > tr td input.common_qnt").each(function () {
+        $("#normalinvoice > tbody > tr td input.common_qnt").each(function() {
             common_qnt++;
             $(this).attr('id', 'total_qntt_' + common_qnt);
             $(this).attr('onkeyup', 'invoice_quantity_calculate(' + common_qnt + ');');
             $(this).attr('onchange', 'invoice_quantity_calculate(' + common_qnt + ');');
         });
         var common_rate = 1;
-        $("#normalinvoice > tbody > tr td input.common_rate").each(function () {
+        $("#normalinvoice > tbody > tr td input.common_rate").each(function() {
             common_rate++;
             $(this).attr('id', 'price_item_' + common_rate);
             $(this).attr('onkeyup', 'invoice_quantity_calculate(' + common_qnt + ');');
             $(this).attr('onchange', 'invoice_quantity_calculate(' + common_qnt + ');');
         });
         var common_discount = 1;
-        $("#normalinvoice > tbody > tr td input.common_discount").each(function () {
+        $("#normalinvoice > tbody > tr td input.common_discount").each(function() {
             common_discount++;
             $(this).attr('id', 'discount_' + common_discount);
             $(this).attr('onkeyup', 'invoice_quantity_calculate(' + common_qnt + ');');
             $(this).attr('onchange', 'invoice_quantity_calculate(' + common_qnt + ');');
         });
         var common_total_price = 1;
-        $("#normalinvoice > tbody > tr td input.common_total_price").each(function () {
+        $("#normalinvoice > tbody > tr td input.common_total_price").each(function() {
             common_total_price++;
             $(this).attr('id', 'total_price_' + common_total_price);
         });
 
 
+
+
     }
 }
-
 var count = 2,
     limits = 500;
+
 
 
 "use strict";
@@ -355,7 +308,9 @@ function bank_info_show(payment_type) {
 }
 
 
-window.onload = function () {
+
+
+window.onload = function() {
     $('body').addClass("sidebar-mini sidebar-collapse");
 }
 
@@ -373,8 +328,8 @@ function bank_paymet(val) {
     document.getElementById('bank_div').style.display = style;
 }
 
-$(document).ready(function () {
-    $('#normalinvoice .toggle').on('click', function () {
+$(document).ready(function() {
+    $('#normalinvoice .toggle').on('click', function() {
         $('#normalinvoice .hideableRow').toggleClass('hiddenRow');
     })
 });
@@ -387,16 +342,17 @@ function customer_due(id) {
     $.ajax({
         url: base_url + 'invoice/invoice/previous',
         type: 'post',
-        data: {customer_id: id, csrf_test_name: csrf_test_name},
-        success: function (msg) {
+        data: { customer_id: id, csrf_test_name: csrf_test_name },
+        success: function(msg) {
 
             $("#previous").val(msg);
         },
-        error: function (xhr, desc, err) {
+        error: function(xhr, desc, err) {
             alert('failed');
         }
     });
 }
+
 
 
 "use strict";
@@ -407,7 +363,7 @@ function customer_autocomplete(sl) {
     // Auto complete
     var options = {
         minLength: 0,
-        source: function (request, response) {
+        source: function(request, response) {
             var customer_name = $('#customer_name').val();
             var csrf_test_name = $('[name="csrf_test_name"]').val();
             var base_url = $("#base_url").val();
@@ -421,17 +377,17 @@ function customer_autocomplete(sl) {
                     customer_id: customer_name,
                     csrf_test_name: csrf_test_name,
                 },
-                success: function (data) {
+                success: function(data) {
                     response(data);
 
                 }
             });
         },
         focus: function(event, ui) {
-            // $(this).val(ui.item.label);
+            $(this).val(ui.item.label);
             return false;
         },
-        select: function (event, ui) {
+        select: function(event, ui) {
             $(this).parent().parent().find("#autocomplete_customer_id").val(ui.item.value);
             var customer_id = ui.item.value;
             customer_due(customer_id);
@@ -441,7 +397,7 @@ function customer_autocomplete(sl) {
         }
     }
 
-    $('body').on('keypress.autocomplete', '#customer_name', function () {
+    $('body').on('keypress.autocomplete', '#customer_name', function() {
         $(this).autocomplete(options);
     });
 
@@ -453,9 +409,9 @@ function cancelprint() {
     location.reload();
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $('#full_paid_tab').keydown(function (event) {
+    $('#full_paid_tab').keydown(function(event) {
         if (event.keyCode == 13) {
             $('#add_invoice').trigger('click');
         }
@@ -463,18 +419,19 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function () {
+
+$(document).ready(function() {
     "use strict";
     var frm = $("#insert_sale");
     var output = $("#output");
-    frm.on('submit', function (e) {
+    frm.on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             dataType: 'json',
             data: frm.serialize(),
-            success: function (data) {
+            success: function(data) {
 
                 if (data.status == true) {
                     toastr["success"](data.message);
@@ -487,7 +444,7 @@ $(document).ready(function () {
                         type: "success",
 
 
-                    }, function (inputValue) {
+                    }, function(inputValue) {
                         if (inputValue === true) {
                             $("#normalinvoice tbody tr").remove();
                             $('#insert_sale').trigger("reset");
@@ -498,50 +455,48 @@ $(document).ready(function () {
                         }
 
                     });
-                    if (data.status == true && event.keyCode == 13) {
-                    }
+                    if (data.status == true && event.keyCode == 13) {}
                 } else {
                     toastr["error"](data.exception);
                 }
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 alert('failed!');
             }
         });
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
     "use strict";
     var frm = $("#update_invoice");
     var output = $("#output");
-    frm.on('submit', function (e) {
+    frm.on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
             method: $(this).attr('method'),
             dataType: 'json',
             data: frm.serialize(),
-            success: function (data) {
+            success: function(data) {
 
                 if (data.status == true) {
                     toastr["success"](data.message);
                     $("#inv_id").val(data.invoice_id);
                     $('#printconfirmodal').modal('show');
-                    if (data.status == true && event.keyCode == 13) {
-                    }
+                    if (data.status == true && event.keyCode == 13) {}
                 } else {
                     toastr["error"](data.exception);
                 }
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 alert('failed!');
             }
         });
     });
 });
 
-$("#printconfirmodal").on('keydown', function (e) {
+$("#printconfirmodal").on('keydown', function(e) {
     var key = e.which || e.keyCode;
     if (key == 13) {
         $('#yes').trigger('click');
@@ -571,11 +526,11 @@ function invoice_productList(sl) {
     // Auto complete
     var options = {
         minLength: 0,
-        source: function (request, response) {
+        source: function( request, response ) {
             // var product_name = $('#product_name_'+sl).val();
             var formData = {
-                'product_name': $('#product_name_' + sl).val(),
-                'type': 'sale'
+                product_name: jQuery('#product_name_'+sl).val(),
+                type:'sale'
             };
             var ajaxurl = '/product_autocomplete';
             $.ajax({
@@ -584,98 +539,80 @@ function invoice_productList(sl) {
                 data: formData,
                 dataType: 'json',
                 success: function (data) {
-                    response(data);
+                    response( data );
                 }
             });
         },
         focus: function( event, ui ) {
-            // $(this).val(ui.item.label);
+            $(this).val(ui.item.label);
             return false;
         },
         select: function( event, ui ) {
-            var total_rows = $("#normalinvoice tbody tr").length;
-            var i = 0;
-            var product_id = 0;
-            var product_in_list = false;
+            $(this).parent().parent().find(".autocomplete_hidden_value").val(ui.item.value);
+            $(this).val(ui.item.label);
 
-            for (i; i <= total_rows; i++) {
-                product_id = $('.product_id_' + i).val();
-                if (product_id == ui.item.value) {
-                    product_in_list = true;
-                    break;
+            var available_quantity    = 'available_quantity_'+sr_no;
+            var priceClass = 'price_item_'+sr_no;
+            var supplierRate = 'supplier_rate_'+sr_no;
+
+            // console.log(priceClass + " priceClass");
+
+            var id=ui.item.value;
+            var dataString = 'product_id='+ id;
+            var form2Data = {
+                product_id: ui.item.value,
+            };
+            var ajax2url = '/retrieve_product_data';
+            $.ajax({
+                type: type,
+                url: base_url + ajax2url,
+                data: form2Data,
+                dataType: 'json',
+                success: function (data) {
+                    // response( data );
+                    console.log(data);
+                    $('#'+available_quantity).val(data.total_product);
+                    $('#'+priceClass).val(data.price);
+                    $('#'+supplierRate).val(data.supplier_price);
                 }
-            }
+            });
+            // $.ajax
+            // ({
+            //     type: "POST",
+            //     url: base_url+"invoice/invoice/retrieve_product_data_inv",
+            //     data: {product_id:id,csrf_test_name:csrf_test_name},
+            //     cache: false,
+            //     success: function(data)
+            //     {
+            //         var obj = jQuery.parseJSON(data);
+            //         for (var i = 0; i < (obj.txnmber); i++) {
+            //             var txam = obj.taxdta[i];
+            //             var txclass = 'total_tax'+i+'_'+sl;
+            //             $('.'+txclass).val(obj.taxdta[i]);
+            //         }
+            //         $('.'+priceClass).val(obj.price);
+            //         $('.'+available_quantity).val(obj.total_product.toFixed(2,2));
+            //         $('.'+unit).val(obj.unit);
+            //         $('.'+tax).val(obj.tax);
+            //         $('#txfieldnum').val(obj.txnmber);
+            //         $('#'+serial_no).html(obj.serial);
+            //
+            //         invoice_quantity_calculate(sl);
+            //
+            //     }
+            // });
 
-            if (product_in_list == true) {
-                alert('Product is already in list.');
-                $('#product_name_' + i).focus();
-                return false;
-            } else {
-                $(this).parent().parent().find(".autocomplete_hidden_value").val(ui.item.value);
-                $(this).val(ui.item.label);
-
-                var available_quantity = 'available_quantity_' + sr_no;
-                var priceClass = 'price_item_' + sr_no;
-                var supplierRate = 'supplier_rate_' + sr_no;
-
-                // console.log(priceClass + " priceClass");
-
-                var id = ui.item.value;
-                var dataString = 'product_id=' + id;
-                var form2Data = {
-                    product_id: ui.item.value,
-                };
-                var ajax2url = '/retrieve_product_data';
-                $.ajax({
-                    type: type,
-                    url: base_url + ajax2url,
-                    data: form2Data,
-                    dataType: 'json',
-                    success: function (data) {
-                        // response( data );
-                        $('#' + available_quantity).val(data.total_product);
-                        $('#' + priceClass).val(data.price);
-                        $('#' + supplierRate).val(data.supplier_price);
-                    }
-                });
-                // $.ajax
-                // ({
-                //     type: "POST",
-                //     url: base_url+"invoice/invoice/retrieve_product_data_inv",
-                //     data: {product_id:id,csrf_test_name:csrf_test_name},
-                //     cache: false,
-                //     success: function(data)
-                //     {
-                //         var obj = jQuery.parseJSON(data);
-                //         for (var i = 0; i < (obj.txnmber); i++) {
-                //             var txam = obj.taxdta[i];
-                //             var txclass = 'total_tax'+i+'_'+sl;
-                //             $('.'+txclass).val(obj.taxdta[i]);
-                //         }
-                //         $('.'+priceClass).val(obj.price);
-                //         $('.'+available_quantity).val(obj.total_product.toFixed(2,2));
-                //         $('.'+unit).val(obj.unit);
-                //         $('.'+tax).val(obj.tax);
-                //         $('#txfieldnum').val(obj.txnmber);
-                //         $('#'+serial_no).html(obj.serial);
-                //
-                //         invoice_quantity_calculate(sl);
-                //
-                //     }
-                // });
-
-                $(this).unbind("change");
-                return false;
-            }
+            $(this).unbind("change");
+            return false;
         }
     }
-    $('body').on('keypress.autocomplete', '.product_name', function () {
+    $('body').on('keypress.autocomplete', '.product_name', function() {
         $(this).autocomplete(options);
     });
 
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     "use strict";
     var paytype = $("#editpayment_type").val();
     if (paytype == 2) {
@@ -697,9 +634,9 @@ function select_employ(elem) {
     $.ajax({
         type: "POST",
         url: "get_employ",
-        data: {employ_id: id, csrf_test_name: csrf_test_name},
+        data: { employ_id: id, csrf_test_name: csrf_test_name },
         cache: false,
-        success: function (data) {
+        success: function(data) {
             // alert(data);
             $("#salary_input").val(data);
         }
@@ -713,26 +650,4 @@ function advance_infot(elem) {
     var advance_data = elem.value;
     var total = salary_input - advance_data;
     $(".remaning_amount").val(total);
-}
-
-function getTaxValue(cElement) {
-    let oid = $(cElement).val();
-
-    $.ajax({
-        type: 'POST',
-        url: base_url + "/api/get_tax_details" + "?taxID=" + oid,
-        success: function (result) {
-            if (result.success === true) {
-                result.data;
-                tax_type = result.data.tax_type;
-                tax_value = result.data.tax_value;
-
-                invoice_calculateSum();
-            } else {
-                tax_type = 0;
-                tax_value = 0;
-                invoice_calculateSum();
-            }
-        }
-    });
 }

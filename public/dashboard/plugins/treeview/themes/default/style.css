@@ -386,12 +386,8 @@
   min-width: 24px;
 }
 .jstree-default .jstree-anchor {
-    line-height: 40px;
-    height: 40px;
-    border: 1px solid #e9e9e9dd;
-    width: 98%;
-    /*padding: 8px 0px 19px 9px;*/
-    margin-bottom: 5px;
+  line-height: 24px;
+  height: 24px;
 }
 .jstree-default .jstree-icon {
   width: 24px;
@@ -401,20 +397,7 @@
 .jstree-default .jstree-icon:empty {
   width: 24px;
   height: 24px;
-  line-height: 9px;
-}
-.bal_span {
-    float: right;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.coa_hd {
-    float: left;
-    padding-left: 20px;
-}
-.bal_span_pre {
-    float: right;
-    padding-right: 70px;
+  line-height: 24px;
 }
 .jstree-default.jstree-rtl .jstree-node {
   margin-right: 24px;

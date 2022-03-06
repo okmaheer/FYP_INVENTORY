@@ -1,103 +1,3 @@
-$(document).on('submit', 'form#auto_salary_form', function(e) {
-    e.preventDefault();
-    var form = $(this);
-    var data = form.serialize();
-
-    swal.fire({
-        html: 'Please wait!<br>Generating salaries of employees.',
-        allowOutsideClick: () => !swal.isLoading()
-    });
-    swal.showLoading();
-
-    $.ajax({
-        method: 'POST',
-        url: form.attr('action'),
-        dataType: 'json',
-        data: data,
-        beforeSend: function() {
-            $(form.find('button[type="submit"]')).attr('disabled', true);
-            $('#generated_salaries').hide('slow');
-            $('#view_pay_slips').hide();
-        },
-        success: function(result) {
-            let rows = '';
-
-            if (result.success === true) {
-                swal.close();
-                $(form.find('button[type="submit"]')).attr('disabled', false);
-                $('#view_pay_slips').show();
-
-                $('.gen_month').html(result.month);
-
-                let alreadyRecords = result.alreadyRecords;
-                let currentRecords = result.currentRecords;
-
-                $('#body_already').empty();
-                if (alreadyRecords.length > 0) {
-                    alreadyRecords.forEach(rec=>{
-                        rows += '<tr>';
-                        rows += '<td>' + rec.employee + '</td><td>' + rec.generated_date + '</td>';
-                        rows += '</tr>';
-                    })
-                    $('#body_already').empty().append(rows);
-                }
-
-                $('#body_current').empty();
-                if (currentRecords.length > 0) {
-                    rows = '';
-
-                    currentRecords.forEach(rec=>{
-                        rows += '<tr>';
-                        rows += '<td>' + rec.employee + '</td><td>' + rec.generated_date + '</td>';
-                        rows += '</tr>';
-                    })
-                    $('#body_current').empty().append(rows);
-                }
-                $('#generated_salaries').show('slow');
-            } else {
-                swal.close();
-                toastr.error(result.msg);
-            }
-        },
-    });
-});
-
-$('#received_by_modal').on('shown.bs.modal', function (e) {
-    $('#received_by').val($(e.relatedTarget).attr('emp-id'));
-    $('#received_by').trigger('change');
-    $('#salary_id').val($(e.relatedTarget).attr('rec-id'));
-});
-
-$(document).on('submit', 'form#salary_payment_form', function(e) {
-    e.preventDefault();
-
-    $('#received_by_modal').modal('hide')
-
-    swal.fire({
-        html: 'Please Wait!<br>Processing Request...',
-        allowOutsideClick: () => !swal.isLoading()
-    });
-    swal.showLoading();
-
-    var form = $(this);
-    var data = form.serialize();
-
-    $.ajax({
-        method: 'POST',
-        url: form.attr('action'),
-        dataType: 'json',
-        data: data,
-        success: function(result) {
-            if (result.success === true) {
-                window.location.reload();
-            } else {
-                swal.close();
-                toastr.error(result.msg, 'Error');
-            }
-        },
-    });
-});
-
 //onchange empoyee id information
 "use strict";
 function employechange(id){
@@ -153,74 +53,44 @@ function employechange_emp_adv_sal(id){
         method:'get',
         dataType:'json',
         success:function(data){
+
             console.log(data);
-            if(data.remainingSalary == 0) {
-                toastr.warning('Complete salary to selected employee has already been paid.', 'Already Paid')
-            } else {
-                $('#basic').val(data.basic);
-                $('#advance_taken').val(data.advance);
-                $('#rem_sal').val(data.remainingSalary);
-                $('#temp_rem_sal').val(data.remainingSalary);
-                if (Number(data.loan) > 0) {
-                    $('#loan').val(data.loan);
-                    $('#loan').attr('readonly', false);
-                    calculateAfterLoan();
-                } else {
-                    $('#loan').val('0.00');
-                    $('#loan').attr('readonly', true);
-                }
-                $('#advance').attr('max', data.remainingSalary);
-            }
+            document.getElementById('basic').value=data.basic;
+            document.getElementById('rem_sal').value=data.remainingSalary;
+            document.getElementById('temp_rem_sal').value=data.remainingSalary;
+
         }
     });
 }
 
 "use strict";
-function getDailyWage(id) {
-    let date = $('#salary_month').val();
-    if (date.length == 0 ){
-        toastr.info('Please select date first.');
-        $('#employee_id').val('');
-        return false;
-    }
+function employechange_emp_sal(id) {
+    var base_url = $("#base_url").val();
+    var csrf_test_name = $('[name="csrf_test_name"]').val();
+    var date_month = $('input[name$="myDate"]').val();
 
+    //   console.log(date_month + " ajax");
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "get_daily_wage",
+        url: "select_employ",
         method: 'post',
         dataType: 'json',
         data: {
             'employee_id': id,
-            'date': date,
+            'date_month': date_month,
+            csrf_test_name: csrf_test_name,
         },
         success: function(data) {
-            if (data.success === true) {
-                if (data.salary == 0) {
-                    toastr.success('Daily wages already paid to selected employee for selected date.');
-                    return false;
-                }
 
-                $('#total_salary').val(data.salary);
-                $('#deduction').attr('max', data.salary);
-                calculateDailyWage();
-            } else {
-                toastr.error('Something went wrong!', 'Error');
-            }
-        }
+            console.log(data);
+            document.getElementById('basic').value = data[0].hrate;
+
+            document.getElementById('org_sal').value = data[0].hrate;
+        },
+
     });
-}
-
-function calculateDailyWage() {
-    let deduct_amount = Number($('#deduction').val());
-    let total_salary = Number($('#total_salary').val());
-    if (deduct_amount > total_salary) {
-        toastr.error('Deduction can not be grater that salary.');
-        $('#deduction').val('');
-        return false;
-    }
-    $('#paid_salary').val(total_salary - deduct_amount);
 }
 
 "use strict";
@@ -365,7 +235,7 @@ function Payment(salpayid,employee_id,TotalSalary,WorkHour,Period,salary_month){
 
 
 function calc_sal_advc(){
-    var advance = 0;
+    var advance = $('#advance').val();
     var basic = $('#basic').val();
     var org_sal = $('#org_sal').val();
     var attendance = $('#attendance').val();
@@ -401,26 +271,27 @@ function calc_sal_advc(){
 
 }
 
-function calculateAfterLoan() {
-    let loan = Number($('#loan').val());
-    let tempSalary = Number($('#temp_rem_sal').val());
-
-    $('#rem_sal').val(tempSalary - loan);
-    calc_advc();
-}
-
 function calc_advc(){
-    var advance = Number($('#advance').val());
-    var rem_sal = Number($('#rem_sal').val());
-    var temp = Number($('#temp_rem_sal').val());
-
+    var advance = $('#advance').val();
+    var salary = $('#basic').val();
+    var rem_sal = $('#rem_sal').val();
+    var temp = $('#temp_rem_sal').val();
     var sal = 0;
-
-    if( advance > rem_sal ){
-        toastr.error('Advance can not be greater than remaining salary.', 'Invalid Advance Amount')
-        $('#advance').val('');
-    } else {
-        // sal = rem_sal - advance;
-        // $('#rem_sal').val(sal);
+    // alert('Advance is Less Than Salary');
+    // console.log('advance' + advance + 'sal' + salary)
+    console.log( salary + ' : ' + temp); // checked
+    if( parseInt(advance) > parseInt(rem_sal) ){
+        alert('Advance is Not Greater Than Salary or Remaining Salary');
+        $('#advance').val(0);
     }
+    else{
+
+        sal = temp - advance;
+
+        $('#rem_sal').val(sal);
+
+    }
+
+
+
 }
