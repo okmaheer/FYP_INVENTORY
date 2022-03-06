@@ -21,7 +21,7 @@ class SettingSeeder extends Seeder
         DB::table('settings')->insert([
             [
                 'id' => 1,
-                'footer_text' => 'Copyright© 2021 . All rights reserved.',
+                'footer_text' => 'Copyright© 2022 . All rights reserved.',
                 'logo' => 'uploads/settings/logo.png',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

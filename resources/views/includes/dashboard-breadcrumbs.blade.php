@@ -28,9 +28,9 @@
                     <h4 class="page-title mb-2"><i class="mdi mdi-monitor mr-2"></i>Dashboard</h4>
                     <div class="">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Inventory</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Doctor</li>
+                    
                         </ol>
                     </div>
                 </div><!--end page title box-->
