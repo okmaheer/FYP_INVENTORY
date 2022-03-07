@@ -2,9 +2,7 @@
     <nav class="navbar-custom">
        <div class="topbar-left">
            <a href="{{ route('dashboard') }}" class="logo">
-               <span>
-                   <img src="{{ asset(Helper::settings()->logo) }}" alt="logo-large" class="logo-lg">
-               </span>
+                <h3 class="text-dark text-center my-1">Inventory Management System</h3>
            </a>
        </div>
        <ul class="list-unstyled topbar-nav float-right mb-0">
@@ -12,12 +10,12 @@
                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
                    <i class="mdi mdi-bell-outline nav-icon"></i>
-                   <span class="badge badge-danger badge-pill noti-icon-badge">2</span>
+                   <span class="badge badge-danger badge-pill noti-icon-badge">?</span>
                </a>
                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
                    <!-- item-->
                    <h6 class="dropdown-item-text">
-                       Notifications (258)
+                       Notifications
                    </h6>
                    <div class="slimscroll notification-list">
                        <!-- item-->
