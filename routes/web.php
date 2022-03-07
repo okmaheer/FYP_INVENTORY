@@ -37,16 +37,11 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('accounts/roles', RoleController::class, ['as' => 'dashboard.accounts']);
     Route::resource('accounts/permissions', PermissionController::class, ['as' => 'dashboard.accounts']);
     Route::get('accounts/permissions/sync/all', [PermissionController::class, 'syncPermissions'])->name('dashboard.accounts.permissions.sync');
-
-
-
-
-
     // Settings > Software Setting
     Route::resource('accounts/settings', SettingsController::class, ['as' => 'dashboard.accounts']);
     Route::get('/manage_company', [SettingsController::class, 'ManageCompany'])->name('manage.company');
-
-    // Stock
+        // Supplier
+        Route::resource('accounts/supplier', SupplierController::class, ['as' => 'dashboard.accounts']);
 
 
 });
@@ -54,9 +49,6 @@ Route::group(['prefix' => 'dashboard'], function () {
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
-
-
-
 
 Route::get('/dash', [HomeController::class, 'index'])->name('dashboard');
 
@@ -68,6 +60,3 @@ Route::get('/user_assign_role', [RoleController::class, 'user_assign_role'])->na
 
 //Authentication Routes
 Auth::routes();
-/**
- *  Return to dashboard...
- */
