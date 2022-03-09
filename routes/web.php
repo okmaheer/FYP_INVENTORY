@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Accounts\Setting\SettingsController;
+use App\Http\Controllers\Dashboard\PurchaseController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('accounts/settings', SettingsController::class, ['as' => 'dashboard.accounts']);
     Route::get('/manage_company', [SettingsController::class, 'ManageCompany'])->name('manage.company');
         // Supplier
-        Route::resource('accounts/supplier', SupplierController::class, ['as' => 'dashboard.accounts']);
+    Route::resource('accounts/supplier', SupplierController::class, ['as' => 'dashboard.accounts']);
+    ///purchase
+    Route::resource('accounts/purchase', PurchaseController::class, ['as' => 'dashboard.accounts']);
 
 
 });
