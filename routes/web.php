@@ -53,7 +53,7 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/dash', [HomeController::class, 'index'])->name('dashboard');
+
 
 
 // Settings > Role Permission
