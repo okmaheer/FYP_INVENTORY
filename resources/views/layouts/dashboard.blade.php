@@ -30,6 +30,68 @@
 
 @yield('innerScriptFiles')
 @yield('innerScript')
+<script>
+
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip({html: true});
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    toastr.options = {
+        "progressBar": true,
+        "closeButton": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+    }
+
+    $('#printBtn').click(function(){
+        var mode = 'popup'; //popup
+        var close = mode == "popup";
+        var options = {
+            mode: mode,
+            popClose: true,
+            popHt: 1300,
+            popWd: 1000,
+            popX: 0,
+            popY: 0
+        };
+        $("div#printArea").printArea(options);
+    });
+});
+
+
+    function DeleteEntry(recID) {
+    swal.fire({
+        title: "Do you really want to remove this record?",
+        type: "question",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Yes! Delete',
+        confirmButtonColor: '#00a5bb',
+        cancelButtonColor: '#f82269',
+        allowOutsideClick: () => {
+            const popup = swal.getPopup();
+            popup.classList.remove('swal2-show');
+            setTimeout(() => {
+                popup.classList.add('headShake', 'animated');
+            })
+            setTimeout(() => {
+                popup.classList.remove('headShake', 'animated');
+            }, 500);
+            return false;
+        }
+    }).then((result) => {
+        if (result.value === true) {
+            $('#deleteForm'+recID).submit();
+        }
+    });
+}
+</script>
 </body>
 
 

@@ -19,7 +19,7 @@ class ProductController extends Controller
 {
     use General;
     public $model;
-    private $location;
+    
 
     function __construct(Product $product)
     {
@@ -91,7 +91,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'unit' => $request->unit_id,
             'description' => $request->description,
-            'location_id' => $this->location,
+           
         ]);
 
         if ($request->file('image')) {
@@ -218,7 +218,7 @@ class ProductController extends Controller
             $product = Product::whereHas('category',function ($query) use ($request) {
                 $query->whereStatus(1);
             })
-                ->where('location_id', $this->location)
+                
                 ->where('product_name', 'LIKE', '%' . $request->product_name . '%')
                 ->orderBy('product_name', 'ASC')->get();
         }
@@ -226,13 +226,13 @@ class ProductController extends Controller
             $product = Product::whereHas('suppliers', function ($query) use ($request) {
                 $query->where('supplier_id', $request->supplier_id);
             })
-                ->where('location_id', $this->location)
+                
                 ->where('product_name', 'LIKE', '%' . $request->product_name . '%')
                 ->orderBy('product_name', 'ASC')->get();
         }
         else {
             $product = Product::where('product_name', 'LIKE', '%' . $request->product_name . '%')
-                ->where('location_id', $this->location)
+                
                 ->orderBy('product_name', 'ASC')->get();
         }
         $json_product = [];
@@ -257,7 +257,7 @@ class ProductController extends Controller
             $products = Product::with(['purchaseDetail', 'suppliers' => function ($query) use ($request) {
                 $query->where("supplier_id", $request->supplier_id);
             }])
-                ->where('location_id', $this->location)
+                
                 ->where('id', $request->product_id)->first();
         } else {
             $products = Product::with('purchaseDetail')->where('id', $request->product_id)->first();
@@ -265,7 +265,7 @@ class ProductController extends Controller
 
         $saleQuantity = 0;
         $saleProducts = Product::with('invoice2Details')->where('id', $request->product_id)
-            ->where('location_id', $this->location)
+            
             ->first();
         foreach ($saleProducts->invoice2Details as $qty) {
             $saleQuantity += $qty->quantity;

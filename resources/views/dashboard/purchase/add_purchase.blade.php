@@ -20,17 +20,13 @@
                                     <div class="col-lg-6">
                                         <h3 class="p-3 text-dark">{{ trans('accounts.purchase.new_purchase') }}</h3>
                                     </div>
-                                    <div class="d-flex col-lg-6 align-items-center justify-content-end">
-                                        <h3 id="amount_span" class="text-dark p-3" style="display: none;">
-                                            Previous Balance: <b><span id="amount_balance" class="text-muted">0.00</span></b>
-                                        </h3>
-                                    </div>
+                                   
                                 </div>
                             </div>
                             <div class="card-body">
-                                @include('dashboard.accounts.purchase.components.general')
+                                @include('dashboard.purchase.components.general')
                                 <div class="row">
-                                    @include('dashboard.accounts.purchase.components.items')
+                                    @include('dashboard.purchase.components.items')
                                 </div>
                             </div>
                         </div>
@@ -41,11 +37,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                @include('dashboard.accounts.purchase.components.totals')
-                                @include('dashboard.accounts.common.buttons.buttons-crud',
-                                    ['save' => true, 'save_print' => true, 'form_id' => 'purchase_form', 'reset' => 'true',
-                                    'cancel' => true, 'cancel_route' => 'dashboard.accounts.purchase.index',
-                                    'full_paid' => true, 'paid_field' => 'paid_amount', 'total_field' => 'net_total_amount'])
+                                @include('dashboard.purchase.components.totals')
+                               
                             </div>
                         </div>
                     </div>
@@ -56,8 +49,6 @@
            @include('includes.dashboard-footer')
         </div>
 
-        @include('dashboard.accounts.common.modals.supplier-model')
-        @include('dashboard.accounts.common.modals.product-model')
     @endsection
 @endsection
-@include('dashboard.accounts.purchase.components.scripts')
+@include('dashboard.purchase.components.scripts')

@@ -106,6 +106,22 @@
             
                 </ul>
             </li>
+
+
+            <li>
+                <a href="javascript: void(0);"> <i class="fa fa-user-secret"></i><span>Purchase</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+            
+                    <li><a href="{{route('dashboard.accounts.purchase.create')}}" class="parent-a" ><i class="fas fa-plus-circle"></i><span>Add Purchase</span></a></li>
+            
+            
+                    <li><a href="{{route('dashboard.accounts.purchase.index')}}" class="parent-a" ><i class="fas fa-list-ul"></i><span>Purhcase List</span></a></li>
+        
+            
+                </ul>
+            </li>
+            
             
 
 

@@ -5,7 +5,6 @@
 @endsection
 
 @section('innerScript')
-    @include('dashboard.accounts.common.modals.modals-script')
     <script>
         $(document).ready(function(){
             $('.select2').select2();
@@ -175,33 +174,6 @@
             }
         }
 
-        function getPaymentAccounts(cElement) {
-            let paymentType = $(cElement).val();
-
-            $('#paymentAccountDiv').hide('slow');
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('api.payment.accounts.by.type') }}",
-                data: {'paymentType': paymentType},
-                dataType: 'json',
-                success: function (result) {
-                    console.log(result);
-                    if (result.success === true) {
-                        $('#payment_account')
-                            .empty()
-                            .append($("<option value>Select Payment Account</option>"));
-                        $.each(result.records, function (key, value) {
-                            $('#payment_account')
-                                .append($("<option></option>")
-                                    .attr("value", key)
-                                    .text(value));
-                        });
-                        $('#paymentAccountDiv').show('slow');
-                    } else {
-                        toastr.error(result.msg);
-                    }
-                }
-            });
-        }
+     
     </script>
 @endsection

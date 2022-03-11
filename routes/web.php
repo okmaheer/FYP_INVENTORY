@@ -10,7 +10,6 @@ use App\Http\Controllers\Accounts\RoleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Accounts\Setting\SettingsController;
 use App\Http\Controllers\Dashboard\PurchaseController;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -41,12 +40,14 @@ Route::group(['prefix' => 'dashboard'], function () {
     // Settings > Software Setting
     Route::resource('accounts/settings', SettingsController::class, ['as' => 'dashboard.accounts']);
     Route::get('/manage_company', [SettingsController::class, 'ManageCompany'])->name('manage.company');
-        // Supplier
+    // Supplier
     Route::resource('accounts/supplier', SupplierController::class, ['as' => 'dashboard.accounts']);
     ///purchase
     Route::resource('accounts/purchase', PurchaseController::class, ['as' => 'dashboard.accounts']);
 
-
+    //Autocomplete Product and product Date
+    Route::post('/product_autocomplete', [ProductController::class, 'productAutocompleteData'])->name('product.autocomplete');
+    Route::post('/retrieve_product_data', [ProductController::class, 'retrieveProductData'])->name('product.retrieved');
 });
 
 Route::get('/', function () {

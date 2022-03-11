@@ -15,6 +15,15 @@ class CreatePurchaseDetailsTable extends Migration
     {
         Schema::create('purchase_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('purchase_id')->nullable();
+            $table->foreignId('product_id')->nullable();
+            $table->decimal('quantity',30,2)->nullable();
+            $table->decimal('rate',30,2)->nullable();  
+            $table->decimal('tax_amount',30,2)->nullable();
+            $table->decimal('tax_p',30,2)->nullable();
+            $table->decimal('total_amount',30,2)->nullable();
+            $table->float('discount')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
