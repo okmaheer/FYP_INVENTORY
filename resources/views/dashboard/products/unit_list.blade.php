@@ -30,11 +30,9 @@
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
                                             <td class="text-center">{{ $unit->unit_name }}</td>
-                                            @if ($unit->status == 1)
+                                          
                                                 <td class="text-center"><h4 class="m-0 p-0"><span class="badge badge-success w-sm">Active</span></h4></td>
-                                            @else
-                                                <td class="text-center"><h4 class="m-0 p-0"><span class="badge badge-danger w-sm">Inactive</span></h4></td>
-                                            @endif
+                                        
                                             <form action="{{ route('dashboard.accounts.unit.destroy', $unit->id)}}" method="POST" id="deleteForm{{ $unit->id }}">
                                                 @csrf
                                                 @method('DELETE')

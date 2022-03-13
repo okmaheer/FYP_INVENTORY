@@ -32,11 +32,9 @@
                                                     <tr class="text-center">
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>{{ $category->name }}</td>
-                                                        @if ($category->status == 1)
+                                                     
                                                             <td class="text-center"><h4 class="m-0 p-0"><span class="badge badge-success w-sm">Active</span></h4></td>
-                                                        @else
-                                                            <td class="text-center"><h4 class="m-0 p-0"><span class="badge badge-danger w-sm">Inactive</span></h4></td>
-                                                        @endif
+                                                       
                                                         <td>
                                                             <form
                                                                 action="{{ route('dashboard.accounts.category.destroy', $category->id) }}" method="POST" id="deleteForm{{ $category->id }}">
