@@ -36,9 +36,9 @@
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$purchase->chalan_no}}</td>
-                                                    <td><a href="{{ route('supplier.ledger', ['supplier_id' => $purchase->supplier_id]) }}" target="_blank" title="View Ledger">{{$purchase->supplier->supplier_name}}</a></td>
-                                                    <td>{{ \AccountHelper::date_format( $purchase->purchase_date ) }}</td>
-                                                    <td>{{ \AccountHelper::number_format($purchase->net_total_amount) }}</td>
+                                                    <td>{{$purchase->supplier->supplier_name}}</td>
+                                                    <td>{{ $purchase->purchase_date}}</td>
+                                                    <td>{{ $purchase->net_total_amount }}</td>
                                                     <td>
                                                         @if (file_exists(($purchase->attachment)))
                                                             <a href="{{ asset($purchase->attachment) }}" target="_blank" class="btn btn-primary btn-sm">View</a>
@@ -49,15 +49,14 @@
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
-                                                        @can('edit', \App\Models\Purchase::class)
+                                                      
                                                             <a href="{{ route('dashboard.accounts.purchase.edit',$purchase->id) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                                        @endcan
-                                                        @can('viewInvoice', \App\Models\Purchase::class)
-                                                            <a href="{{ route('dashboard.accounts.purchase.invoice',$purchase->id) }}" target="_blank" class="btn btn-sm btn-warning"><i class="fas fa-file-invoice"></i></a>
-                                                        @endcan
-                                                        @can('delete', \App\Models\Purchase::class)
+                                                        
+                                                       
+                                                            {{-- <a href="{{ route('dashboard.accounts.purchase.invoice',$purchase->id) }}" target="_blank" class="btn btn-sm btn-warning"><i class="fas fa-file-invoice"></i></a> --}}
+                                                      
                                                             <button type="button" onclick="DeleteEntry({{ $purchase->id }});" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                                        @endcan
+                                                      
                                                     </td>
                                                 </tr>
                                             @endforeach

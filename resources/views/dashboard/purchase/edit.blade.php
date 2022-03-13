@@ -31,9 +31,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @include('dashboard.accounts.purchase.components.general', ['for' => 'edit'])
+                                @include('dashboard.purchase.components.general', ['for' => 'edit'])
                                 <div class="row">
-                                    @include('dashboard.accounts.purchase.components.items', ['for' => 'edit'])
+                                    @include('dashboard.purchase.components.items', ['for' => 'edit'])
                                 </div>
                             </div>
                         </div>
@@ -44,8 +44,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                @include('dashboard.accounts.purchase.components.totals', ['for' => 'edit'])
-                                @include('dashboard.accounts.common.buttons.buttons-crud',
+                                @include('dashboard.purchase.components.totals', ['for' => 'edit'])
+                                @include('includes.buttons.buttons-crud',
                                     ['update' => true, 'update_print' => true, 'form_id' => 'purchase_form',
                                     'cancel' => true, 'cancel_route' => 'dashboard.accounts.purchase.index',
                                     'full_paid' => true, 'paid_field' => 'paid_amount', 'total_field' => 'net_total_amount'])
@@ -61,4 +61,4 @@
 
     @endsection
 @endsection
-@include('dashboard.accounts.purchase.components.scripts', ['for' => 'edit'])
+@include('dashboard.purchase.components.scripts', ['for' => 'edit'])

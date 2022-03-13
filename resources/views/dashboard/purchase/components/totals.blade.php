@@ -3,7 +3,7 @@
     <div class="col-md-4">
         {!!  Html::decode(Form::label('grand_total_amount' ,'Total Bill' ,['class'=>'col-form-label']))   !!}
         <div class="input-group">
-            {!!  Form::text('grand_total_amount',\AccountHelper::number_format( $model->grand_total_amount),['id'=>'grand_total_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
+            {!!  Form::text('grand_total_amount', $model->grand_total_amount,['id'=>'grand_total_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
         </div>
     </div>
     <div class="col-md-4">
@@ -15,7 +15,7 @@
     <div class="col-md-4">
         {!!  Html::decode(Form::label('net_total_amount' ,'Net Total' ,['class'=>'col-form-label']))   !!}
         <div class="input-group">
-        {!!  Form::text('net_total_amount',\AccountHelper::number_format($model->net_total_amount),['id'=>'net_total_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
+        {!!  Form::text('net_total_amount',$model->net_total_amount,['id'=>'net_total_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
     <div class="col-md-4">
         {!!  Html::decode(Form::label('due_amount' ,'Remaining Balance' ,['class'=>'col-form-label']))   !!}
         <div class="input-group">
-            {!!  Form::text('due_amount',\AccountHelper::number_format($model->due_amount),['id'=>'due_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
+            {!!  Form::text('due_amount',$model->due_amount,['id'=>'due_amount','class'=>'form-control text-right','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
         </div>
     </div>
 </div>

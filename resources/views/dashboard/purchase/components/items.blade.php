@@ -20,7 +20,7 @@
                         {!!  Form::hidden('purchaseItem[id][]', $purchaseDetail->product_id,['id'=>'purchaseItem[id][]','class'=>'current_id', 'required']) !!}
                     </td>
                     <td>
-                        {!!  Form::text('purchaseItem[available][]',\AccountHelper::getProductStock($purchaseDetail->product_id),['id'=>'purchaseItem[available][]','class'=>'form-control text-right current_qty_available','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
+                        {!!  Form::text('purchaseItem[available][]',$purchaseDetail->product_id,['id'=>'purchaseItem[available][]','class'=>'form-control text-right current_qty_available','placeholder'=>'0.00','readonly', 'tabindex' => '-1']) !!}
                     </td>
                     <td>
                         {!!  Form::number('purchaseItem[qty][]',$purchaseDetail->quantity,['step'=>'any','min'=>'1', 'id'=>'purchaseItem[qty][]','class'=>'form-control text-right current_quantity','placeholder'=>'0.00','onkeyup'=>'applyQuantity(this);','onchange'=>'applyQuantity(this);', 'required', 'autocomplete'=>'off']) !!}
@@ -33,7 +33,7 @@
                         {!!  Form::hidden('purchaseItem[tax_amount][]', $purchaseDetail->tax_amount,['id'=>'purchaseItem[tax_amount][]','class'=>'current_tax_amount']) !!}
                     </td>
                     <td>
-                        {!!  Form::text('purchaseItem[total][]',\AccountHelper::number_format( $purchaseDetail->total_amount),['id'=>'purchaseItem[total][]','class'=>'form-control text-right current_total','placeholder'=>'0.00','readonly', 'tabindex' => '-1', 'required']) !!}
+                        {!!  Form::text('purchaseItem[total][]',$purchaseDetail->total_amount,['id'=>'purchaseItem[total][]','class'=>'form-control text-right current_total','placeholder'=>'0.00','readonly', 'tabindex' => '-1', 'required']) !!}
                     </td>
                     <td class="text-center">
 

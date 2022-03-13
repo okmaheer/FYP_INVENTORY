@@ -132,7 +132,7 @@ class PurchaseController extends Controller
             ->findorFail($id);
 
 
-        return view('dashboard.accounts.purchase.edit_purchase',compact('page_title','supplier','model'));
+        return view('dashboard.purchase.edit',compact('page_title','supplier','model'));
     }
 
     public function update(Request $request, $id)
