@@ -48,6 +48,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     //Autocomplete Product and product Date
     Route::post('/product_autocomplete', [ProductController::class, 'productAutocompleteData'])->name('product.autocomplete');
     Route::post('/retrieve_product_data', [ProductController::class, 'retrieveProductData'])->name('product.retrieved');
+
+    Route::get('accounts/purchase_report', [PurchaseController::class, 'PurchaseReport'])->name('purchase.report');
+    Route::get('accounts/purchase_report_category_wise', [PurchaseController::class, 'PurchaseReportCategoryWise'])->name('purchase_report.category_wise');;
 });
 
 Route::get('/', function () {

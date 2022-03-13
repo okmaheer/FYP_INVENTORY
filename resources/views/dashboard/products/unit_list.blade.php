@@ -35,9 +35,13 @@
                                             @else
                                                 <td class="text-center"><h4 class="m-0 p-0"><span class="badge badge-danger w-sm">Inactive</span></h4></td>
                                             @endif
+                                            <form action="{{ route('dashboard.accounts.unit.destroy', $unit->id)}}" method="POST" id="deleteForm{{ $unit->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                             <td class="text-center">
                                                     <a href="{{ route('dashboard.accounts.unit.edit', $unit->id) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('dashboard.accounts.unit.destroy',$unit->id) }}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>                                               
+                                                    <button type="button" onclick="DeleteEntry({{ $unit->id }});" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

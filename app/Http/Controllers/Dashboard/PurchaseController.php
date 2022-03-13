@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
@@ -21,41 +22,41 @@ class PurchaseController extends Controller
     private $categories;
     private $units;
 
-    public function __construct(Purchase $purchase, Supplier $supplier,Category $category, Unit $unit){
+    public function __construct(Purchase $purchase, Supplier $supplier, Category $category, Unit $unit)
+    {
         $this->middleware('auth');
         $this->model = $purchase;
         $this->supplier = $supplier;
         $this->categories = $category;
         $this->units = $unit;
-     
     }
 
     public function index(Request $request)
     {
-    
 
-        $purchases = Purchase::with('purchaseDetails','supplier');
+
+        $purchases = Purchase::with('purchaseDetails', 'supplier');
         // $purchases = \QueryHelper::filterByDate($request,$purchases,'purchase','purchases');
         $purchases = $purchases->orderBy('purchase_date', 'DESC')->get();
 
         $page_title = "Manage Purchase";
 
-        return view('dashboard.purchase.manage_purchase',compact('page_title','purchases'));
+        return view('dashboard.purchase.manage_purchase', compact('page_title', 'purchases'));
     }
 
     public function create()
     {
 
-        $supplier = $this->supplier->orderBy('supplier_name', 'ASC')->pluck('supplier_name','id');
+        $supplier = $this->supplier->orderBy('supplier_name', 'ASC')->pluck('supplier_name', 'id');
 
         $page_title = "Create New Purchase";
 
-        return view('dashboard.purchase.add_purchase',compact('page_title','supplier'));
+        return view('dashboard.purchase.add_purchase', compact('page_title', 'supplier'));
     }
 
     public function store(Request $request)
     {
-       
+
         $this->makeDirectory('purchase_attachment');
 
         $purchase = $this->model->create($request->all());
@@ -76,7 +77,7 @@ class PurchaseController extends Controller
             $purchase->attachment = 'uploads/purchase_attachment/' . $name;
             $purchase->save();
         }
-       
+
 
 
         if ($request->has('purchaseItem')) {
@@ -108,11 +109,8 @@ class PurchaseController extends Controller
             }
         }
 
-        
-            return redirect()->route('dashboard.accounts.purchase.index')->with('success', trans('accounts.messages.created_purchase_msg'));
-      
 
-
+        return redirect()->route('dashboard.accounts.purchase.index')->with('success', trans('accounts.messages.created_purchase_msg'));
     }
 
     public function show($id)
@@ -122,17 +120,17 @@ class PurchaseController extends Controller
 
     public function edit($id)
     {
-      
+
 
         $page_title = __('accounts.purchase.modify_purchase');
 
         $supplier = $this->supplier
-            ->orderBy('supplier_name', 'ASC')->pluck('supplier_name','id');
+            ->orderBy('supplier_name', 'ASC')->pluck('supplier_name', 'id');
         $model = $this->model->with('purchaseDetails.product')
             ->findorFail($id);
 
 
-        return view('dashboard.purchase.edit',compact('page_title','supplier','model'));
+        return view('dashboard.purchase.edit', compact('page_title', 'supplier', 'model'));
     }
 
     public function update(Request $request, $id)
@@ -160,26 +158,25 @@ class PurchaseController extends Controller
                             $purchase->purchaseDetails()
                                 ->where(['purchase_id' => $purchase->id, 'product_id' => $product_id])
                                 ->update([
-                                'quantity' => $quantity,
-                                'rate' => $price,
-                                'tax_amount' => $taxAmount,
-                                'tax_p' => $taxPercentage,
-                                'total_amount' => $total,
-                            ]);
+                                    'quantity' => $quantity,
+                                    'rate' => $price,
+                                    'tax_amount' => $taxAmount,
+                                    'tax_p' => $taxPercentage,
+                                    'total_amount' => $total,
+                                ]);
                         }
                     }
                 }
             }
 
-           
-                return redirect()->route('dashboard.accounts.purchase.index')->with('success', trans('accounts.messages.updated_purchase_msg'));
-            }
-     
+
+            return redirect()->route('dashboard.accounts.purchase.index')->with('success', trans('accounts.messages.updated_purchase_msg'));
+        }
     }
 
     public function destroy($id)
     {
-        
+
         $purchase = $this->model->findorFail($id);
         $purchase->purchaseDetails()->delete();
         $purchase->delete();
@@ -204,4 +201,53 @@ class PurchaseController extends Controller
     //     $supplier = $this->supplier->findorFail($purchase->supplier_id);
     //     return view('dashboard.accounts.purchase.invoice',compact('page_title', 'breadcrumbs', 'supplier','purchase'));
     // }
+
+    public function PurchaseReport(Request $request)
+    {
+       
+
+        $filterData = $data = [];
+        $report = $this->model->whereHas('supplier');
+
+        // $report = \QueryHelper::filterByDate($request, $report, 'purchase', 'purchases');
+        $report = $report->get();
+
+        $breadcrumbs = collect([
+            'Dashboard' => route('dashboard'),
+            'Purchase Report' => route('purchase.report'),
+        ]);
+
+        $page_title = "Purchase Report";
+
+        return view('dashboard.reports.purchase_report', compact(
+            'page_title',
+            'breadcrumbs',
+            'report'
+        ));
+    }
+
+    public function PurchaseReportCategoryWise(Request $request)
+    {
+      
+
+        $report =
+            $this->model->with('purchaseDetails.product.category');
+
+        // $report = \QueryHelper::filterByDate($request, $report, 'purchase', 'purchases');
+        $report = $report->paginate(15);
+        $breadcrumbs = collect([
+            'Dashboard' => route('dashboard'),
+            'Purchase Report (Category Wise)' => route('purchase_report.category_wise'),
+        ]);
+
+        $page_title = "Category Wise Purchase Report";
+
+
+
+        return view('dashboard.reports.purchase_report_category_wise', compact(
+            'page_title',
+            'breadcrumbs',
+            'report'
+        ));
+    }
 }

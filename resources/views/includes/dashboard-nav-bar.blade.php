@@ -121,9 +121,21 @@
             
                 </ul>
             </li>
-            
-            
 
+
+            <li>
+                <a href="javascript: void(0);"> <i class="fa fa-note"></i><span>Report</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+            
+                    <li><a href="{{route('purchase.report')}}" class="parent-a" >Purchase Report</a></li>
+        
+                    <li><a href="{{route('purchase_report.category_wise')}}" class="parent-a" >Purchase Report (Category wise)</a></li>
+                </ul>
+            </li>
+            
+            
+          
 
 
 

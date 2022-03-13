@@ -134,7 +134,6 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $unit = Unit::findorFail($id);
         $unit->delete();
         return redirect()->route('dashboard.accounts.unit.index')->with('success', trans('accounts.messages.deleted_unit_msg'));
