@@ -95,7 +95,7 @@
             </li>
 
             <li>
-                <a href="javascript: void(0);"> <i class="fa fa-user-secret"></i><span>Supplier</span><span
+                <a href="javascript: void(0);"> <i class="fa fa-users"></i></i><span>Supplier</span><span
                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
             
@@ -110,7 +110,7 @@
 
 
             <li>
-                <a href="javascript: void(0);"> <i class="fa fa-user-secret"></i><span>Purchase</span><span
+                <a href="javascript: void(0);"> <i class="fa fa-shopping-cart"></i><span>Purchase</span><span
                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
             
@@ -125,7 +125,7 @@
 
 
             <li>
-                <a href="javascript: void(0);"> <i class="fa fa-note"></i><span>Report</span><span
+                <a href="javascript: void(0);"> <i class="fa fa-book-open"></i><span>Report</span><span
                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
             
