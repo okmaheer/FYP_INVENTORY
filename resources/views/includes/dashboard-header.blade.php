@@ -2,7 +2,7 @@
     <nav class="navbar-custom">
        <div class="topbar-left">
            <a href="{{ route('dashboard') }}" class="logo">
-                <h3 class="text-dark text-center my-1">Inventory Management System</h3>
+                <h3 class="text-dark text-center my-1">Inventory Management System <img src="{{ asset('images/logo-sm.png') }}" alt="" class="thumb" height="20px"></h3>
            </a>
        </div>
        <ul class="list-unstyled topbar-nav float-right mb-0">

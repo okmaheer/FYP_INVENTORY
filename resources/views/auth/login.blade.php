@@ -22,7 +22,7 @@
                                 </p>
                             </div>
                         </div>
-                        <form class="form-horizontal my-4" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal my-2" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="email">{{ __('E-Mail Address') }}</label>
@@ -86,27 +86,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="account-social text-center">
-                        <h6 class="my-4">Or Login With</h6>
-                        <ul class="list-inline mb-4">
-                            <li class="list-inline-item">
-                                <a href="" class="">
-                                    <i class="fab fa-facebook-f facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="" class="">
-                                    <i class="fab fa-twitter twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="" class="">
-                                    <i class="fab fa-google google"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="m-3 text-center bg-light p-3 text-primary">
+                    
+                    <div class="m-2 text-center bg-light p-2 text-primary">
                         <h5 class="">Don't have an account ? </h5>
                         <p class="font-13">Join <span>Account</span> Now</p>
                         <a href="{{ route('register') }}" class="btn btn-primary btn-round waves-effect waves-light">Free Resister</a>
@@ -117,8 +98,8 @@
         <div class="col-lg-9 p-0 d-flex justify-content-center">
             <div class="accountbg d-flex align-items-center">
                 <div class="account-title text-white text-center">
-                    <img src="{{ asset('images/logo-sm.png') }}" alt="" class="thumb-sm">
-                    <h4 class="mt-3">Welcome To Account</h4>
+                    <img src="{{ asset('images/logo-sm.png') }}" alt="" class="thumb" height="70px">
+                    <h3 class="mt-3">Inventory Management System</h3>
                     <div class="border w-25 mx-auto border-primary"></div>
                     <h1 class="">Let's Get Started</h1>
                     <p class="font-14 mt-3">Don't have an account ? <a href="{{ route('register') }}" class="text-primary">Sign up</a></p>
