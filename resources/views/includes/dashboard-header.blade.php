@@ -1,10 +1,6 @@
 <div class="topbar">
     <nav class="navbar-custom">
-       <div class="topbar-left">
-           <a href="{{ route('dashboard') }}" class="logo">
-                <h3 class="text-dark text-center my-1">Inventory Management System <img src="{{ asset('images/logo-sm.png') }}" alt="" class="thumb" height="20px"></h3>
-           </a>
-       </div>
+
        <ul class="list-unstyled topbar-nav float-right mb-0">
            <li class="dropdown">
                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -80,25 +76,20 @@
                <!-- End mobile menu toggle-->
            </li>
        </ul>
-       <ul class="list-unstyled topbar-nav mb-0">
-
-        <li>
-            <button onclick="ToggleNavBar()" class="button-menu-mobile nav-link waves-effect waves-light">
-                <i class="mdi mdi-menu nav-icon"></i>
-            </button>
-        </li>
-    </ul>
-
 
        <ul class="list-unstyled topbar-nav mb-0">
-           <li class="hide-phone app-search">
-               <form role="search" class="">
-                   <input type="text" placeholder="Search..." class="form-control">
-                   <a href=""><i class="fas fa-search"></i></a>
-               </form>
-           </li>
+            <li>
+                <button onclick="ToggleNavBar()" class="button-menu-mobile nav-link waves-effect waves-light">
+                    <i class="mdi mdi-menu nav-icon"></i>
+                </button>
+            </li>
+        </ul>
 
-       </ul>
+        <div class="topbar-center">
+            <a href="{{ route('dashboard') }}">
+                <img src="{{ asset('images/project.png') }}" alt="" class="thumb mx-auto d-block" height="70px">
+            </a>
+        </div>
 
    </nav>
    <!-- end navbar-->

@@ -58,7 +58,7 @@
             </li>
 
             <li>
-                <a href="javascript: void(0);"> <i class=" fa fa-cubes"></i><span>Category</span><span
+                <a href="javascript: void(0);"> <i class="fa fa-list-alt" aria-hidden="true"></i><span>Category</span><span
                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li>
