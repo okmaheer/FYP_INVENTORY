@@ -17,14 +17,14 @@
                         <div class="row">
                             <div class="col-8 align-self-center">
                                 <div class="">
-                                    <h4 class="mt-0 header-title">Total Sales</h4>
-                                    <h2 class="mt-0 font-weight-bold text-dark">40k</h2>
+                                    <h4 class="mt-0 header-title">Total Products</h4>
+                                    <h2 class="mt-0 font-weight-bold text-dark">40</h2>
                                     <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up From Last Week</p>
                                 </div>
                             </div><!--end col-->
                             <div class="col-4 align-self-center">
                                 <div class="icon-info text-right">
-                                    <i class="dripicons-cart bg-soft-warning"></i>
+                                    <i class="dripicons-jewel bg-soft-pink"></i>
                                 </div>
                             </div><!--end col-->
                         </div><!--end row-->
@@ -47,9 +47,9 @@
                         <div class="row">
                             <div class="col-8 align-self-center">
                                 <div class="">
-                                    <h4 class="mt-0 header-title">Total Revenue</h4>
-                                    <h2 class="mt-0 font-weight-bold text-dark">$9090</h2>
-                                    <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up from yesterday</p>
+                                    <h4 class="mt-0 header-title">Total Spendings</h4>
+                                    <h2 class="mt-0 font-weight-bold text-dark">$909</h2>
+                                    <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up from Last Month</p>
                                 </div>
                             </div><!--end col-->
                             <div class="col-4 align-self-center">
@@ -79,12 +79,12 @@
                                     <div class="row">
                                         <div class="col-12 align-self-center">
                                             <div class="text-center">
-                                                <h4 class="mt-0 header-title text-left">Average Product Price</h4>
+                                                <h4 class="mt-0 header-title text-left">Total Purchase</h4>
                                                 <div class="icon-info my-3">
-                                                    <i class="dripicons-jewel bg-soft-pink"></i>
+                                                <i class="dripicons-cart bg-soft-warning"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">$1280.00</h2>
-                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>35.5%</span> Last 100 Subscriptions</p>
+                                                <h2 class="mt-0 font-weight-bold text-dark">500</h2>
+                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>35.5%</span> More than Last Month</p>
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end row-->
@@ -97,7 +97,7 @@
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-basket bg-soft-info"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">1824</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">182</h2>
                                                 <p class="mb-1 text-muted"><span class="text-danger"><i class="mdi mdi-arrow-down"></i>1.5%</span> Down From Last week</p>
                                             </div>
                                         </div><!--end col-->
@@ -108,12 +108,12 @@
                                     <div class="row">
                                         <div class="col-12 align-self-center">
                                             <div class="text-center">
-                                                <h4 class="mt-0 header-title text-left">Order Returns</h4>
+                                                <h4 class="mt-0 header-title text-left">Total Units</h4>
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-swap bg-soft-primary"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">11.1%</h2>
-                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>11.1%</span> Up from Last Month</p>
+                                                <h2 class="mt-0 font-weight-bold text-dark">5</h2>
+                                                <p class="mb-1 text-muted">Current Units Available</p>
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end row-->
@@ -122,12 +122,12 @@
                                     <div class="row">
                                         <div class="col-12 align-self-center">
                                             <div class="text-center">
-                                                <h4 class="mt-0 header-title text-left">Total Brands</h4>
+                                                <h4 class="mt-0 header-title text-left">Total Categories</h4>
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-store bg-soft-warning"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">92</h2>
-                                                <p class="mb-1 text-muted">All International Brands</p>
+                                                <h2 class="mt-0 font-weight-bold text-dark">10</h2>
+                                                <p class="mb-1 text-muted">Current Product Categories</p>
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end row-->
@@ -136,11 +136,11 @@
                                     <div class="row">
                                         <div class="col-12 align-self-center">
                                             <div class="text-center">
-                                                <h4 class="mt-0 header-title text-left">Total Visits</h4>
+                                                <h4 class="mt-0 header-title text-left">Total Suppliers</h4>
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-user-group bg-soft-success"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">35k</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">35</h2>
                                                 <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>11.1%</span> Up from yesterday</p>
                                             </div>
                                         </div><!--end col-->
@@ -159,50 +159,6 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div><!--end col-->
-        </div><!--end row-->
-        <div class="row">
-
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="mt-0 header-title">World Wide Customers</h4>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mt-2">
-                                    <img src="{{ asset('dashboard/images/flags/us_flag.jpg') }}" alt="" class="mb-2" height="30">
-                                    <h5 class="mb-3">Our most customers in America <span class="badge badge-primary">March 2019</span></h5>
-                                    <p class="font-13 text-muted mb-0"> But who has any right to find fault with a man who
-                                        chooses to enjoy a pleasure that
-                                        has no.
-                                    </p>
-                                    <div class="apexchart-wrapper">
-                                        <div id="d1-radialBarMap" class="chart-gutters"></div>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-md-6">
-                                        <p class="mb-2 text-muted font-13">Domestic Customers</p>
-                                        <h3 class="mt-0"><img src="{{ asset('dashboard/images/flags/us_flag.jpg') }}" alt="" class="mr-2 thumb-xs rounded-circle">2.8k</h3>
-                                        <div class="progress mt-2  mx-auto" style="height:3px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div><!--end col-->
-                                    <div class="col-md-6">
-                                        <p class="mb-2 text-muted font-13">International Customers</p>
-                                        <h3 class="mt-0"><i class="fas fa-globe text-muted mr-2 font-30"></i>1.9k</h3>
-                                        <div class="progress mt-2 mx-auto" style="height:3px;">
-                                            <div class="progress-bar  bg-warning" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div><!--end col-->
-                                </div><!--end row-->
-                            </div><!--end col-->
-                            <div class="col-md-8">
-                                <div id="world-map-markers" class="dashboard-map"></div>
-                            </div><!--end col-->
-                        </div><!--end row-->
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
         </div><!--end row-->
 
         <div class="row">
