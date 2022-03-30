@@ -70,8 +70,8 @@
                                 </div>
                                 @if (Route::has('password.request'))
                                     <div class="col-sm-6 text-right">
-                                        <a href="{{ route('password.request') }}" class="text-muted font-13">
-                                            <i class="mdi mdi-lock"></i> {{ __('Forgot Your Password?') }}
+                                        {{-- <a href="{{ route('password.request') }}" class="text-muted font-13"> --}}
+                                            {{-- <i class="mdi mdi-lock"></i> {{ __('Forgot Your Password?') }} --}}
                                         </a>
                                     </div>
                                 @endif
@@ -86,12 +86,12 @@
                             </div>
                         </form>
                     </div>
-                    
+{{--                     
                     <div class="m-2 text-center bg-light p-2 text-primary">
                         <h5 class="">Don't have an account ? </h5>
                         <p class="font-13">Join <span>Account</span> Now</p>
                         <a href="{{ route('register') }}" class="btn btn-primary btn-round waves-effect waves-light">Free Resister</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -101,8 +101,8 @@
                     <img src="{{ asset('images/logo-sm.png') }}" alt="" class="thumb" height="70px">
                     <h3 class="mt-3">Inventory Management System</h3>
                     <div class="border w-25 mx-auto border-primary"></div>
-                    <h1 class="">Let's Get Started</h1>
-                    <p class="font-14 mt-3">Don't have an account ? <a href="{{ route('register') }}" class="text-primary">Sign up</a></p>
+                    {{-- <h1 class="">Let's Get Started</h1> --}}
+                    {{-- <p class="font-14 mt-3">Don't have an account ? <a href="{{ route('register') }}" class="text-primary">Sign up</a></p> --}}
                 </div>
             </div>
         </div>
