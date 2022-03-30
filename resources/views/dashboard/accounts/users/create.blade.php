@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {!! Form::open(['route' => ['dashboard.accounts.users.store'], 'method' => 'POST', 'files' => true] ) !!}
+                        {!! Form::open(['route' => ['dashboard.accounts.admins.store'], 'method' => 'POST', 'files' => true] ) !!}
                         {!! csrf_field() !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Name') !!}
@@ -45,14 +45,17 @@
                             {!! Form::file('avatar', array('id' => 'avatar','class' => 'dropify')) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('roles', 'Roles') !!}
-                            {!! Form::select('roles[]', $roles, null, array('id' => 'roles',
+                            {{-- {!! Form::label('roles', 'Roles') !!} --}}
+                            {!! Form::hidden('roles',$roles[0], ['class' => 'form-control', 'required', 'id' => 'roles']) !!}
+                            {{-- {!! Form::hidden('roles',roles,array('id' => 'avatar','class' => 'dropify')) !!} --}}
+                            {{-- {!! Form::select('roles[]', $roles, null, array('id' => 'roles',
                             'class' => 'form-control selectpicker show-menu-arrow', 'data-live-search' => 'true', 'data-selected-text-format' => 'count > 3',
-                            'data-size' => '10', 'data-actions-box' => 'true','data-placeholder'=>'Select Roles','required','multiple')) !!}
+                            'data-size' => '10', 'data-actions-box' => 'true','data-placeholder'=>'Select Roles','required','multiple')) !!} --}}
                         </div>
                         <div class="form-group custom-control custom-checkbox">
-                            {!! Form::checkbox('active',null,false,['id'=>'active']) !!}
-                            {!! Form::label('active','Is Active') !!}
+                            {!! Form::hidden('active',1, ['class' => 'form-control', 'required', 'id' => 'roles']) !!}
+                            {{-- {!! Form::checkbox('active',null,false,['id'=>'active']) !!} --}}
+                            {{-- {!! Form::label('active','Is Active') !!} --}}
                         </div>
                         <div class="form-group text-right">
                             {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}

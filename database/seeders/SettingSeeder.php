@@ -15,19 +15,19 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('settings')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        DB::table('settings')->insert([
-            [
-                'id' => 1,
-                'footer_text' => 'Copyright© 2022 . All rights reserved.',
-                'logo' => 'uploads/settings/logo.png',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::table('settings')->truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::table('settings')->insert([
+        //     [
+        //         'id' => 1,
+        //         'footer_text' => 'Copyright© 2022 . All rights reserved.',
+        //         'logo' => 'uploads/settings/logo.png',
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ]
 
 
-        ]);
+        // ]);
     }
 }

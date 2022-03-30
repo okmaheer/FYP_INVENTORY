@@ -4,6 +4,7 @@
 use App\Http\Controllers\Accounts\PermissionController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UnitController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\SupplierController;
 use App\Http\Controllers\Accounts\RoleController;
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     ///Supplier
     Route::resource('accounts/supplier', SupplierController::class, ['as' => 'dashboard.accounts']);
     ////User
+    Route::resource('accounts/admins', AdminController::class, ['as' => 'dashboard.accounts']);
     Route::resource('accounts/users', UserController::class, ['as' => 'dashboard.accounts']);
     Route::resource('accounts/roles', RoleController::class, ['as' => 'dashboard.accounts']);
     Route::resource('accounts/permissions', PermissionController::class, ['as' => 'dashboard.accounts']);

@@ -15,13 +15,43 @@
     <div id="navigationttt">
         <ul class="metismenu left-sidenav-menu" id="side-nav">
             <li class="menu-title">Main</li>
-            <li>
+            {{-- <li>
                 <a href="javascript: void(0);"> <i class="fa fa-user-secret"></i><span>Access</span><span
                         class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                    
                         <li>
                             <a href="{{route('dashboard.accounts.users.index')}}">Users</a>
+                        </li>
+              --}}
+                    {{-- @can('view',\App\Models\Role::class)
+                        <li>
+                            <a href="{{route('dashboard.accounts.roles.index')}}">Roles</a>
+                        </li>
+                    @endcan
+                    @can('view',\App\Models\Permission::class)
+                        <li>
+                            <a href="{{route('dashboard.accounts.permissions.index')}}">Permissions</a>
+                        </li>
+                    @endcan
+                    @can('sync',\App\Models\Permission::class)
+                        <li>
+                            <a href="{{route('dashboard.accounts.permissions.sync')}}">Sync Permissions</a>
+                        </li>
+                    @endcan --}}
+                {{-- </ul>
+            </li> --}}
+            <li>
+                <a href="javascript: void(0);"> <i class="fa fa-user-secret"></i><span>Admin</span><span
+                        class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                   
+                        <li>
+                            <a href="{{route('dashboard.accounts.admins.index')}}">Admins List</a>
+                        </li>
+                        
+                        <li>
+                            <a href="{{route('dashboard.accounts.admins.create')}}">Create Admin</a>
                         </li>
              
                     {{-- @can('view',\App\Models\Role::class)

@@ -46,9 +46,9 @@
                                                  aria-labelledby="dLabel8" x-placement="top-end"
                                                  style="position: absolute; transform: translate3d(-121px, -72px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                 <form
-                                                    action="{{ route('dashboard.accounts.users.destroy',$user->id) }}"
+                                                    action="{{ route('dashboard.accounts.admins.destroy',$user->id) }}"
                                                     method="POST">
-                                                    {!! link_to_route('dashboard.accounts.users.edit', "Edit", $user->id, ['class' => 'dropdown-item']) !!}
+                                                    {!! link_to_route('dashboard.accounts.admins.edit', "Edit", $user->id, ['class' => 'dropdown-item']) !!}
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item"
