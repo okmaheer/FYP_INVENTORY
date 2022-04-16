@@ -9,9 +9,7 @@
                     <li class="list-inline-item">
                         <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
                     </li>
-                    <li class="list-inline-item">
-                        <a href="{{ route('dashboard.accounts.settings.index') }}" class=""><i class="mdi mdi-settings text-light"></i></a>
-                    </li>
+                    
                     <li class="list-inline-item">
                         <a href="#" class=""><i class="mdi mdi-power text-danger"></i></a>
                     </li>
