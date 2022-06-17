@@ -18,7 +18,7 @@
                             <div class="col-8 align-self-center">
                                 <div class="">
                                     <h4 class="mt-0 header-title">Total Products</h4>
-                                    <h2 class="mt-0 font-weight-bold text-dark">40</h2>
+                                    <h2 class="mt-0 font-weight-bold text-dark">{{ $product }}</h2>
                                     <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up From Last Week</p>
                                 </div>
                             </div><!--end col-->
@@ -48,7 +48,7 @@
                             <div class="col-8 align-self-center">
                                 <div class="">
                                     <h4 class="mt-0 header-title">Total Spendings</h4>
-                                    <h2 class="mt-0 font-weight-bold text-dark">$909</h2>
+                                    <h2 class="mt-0 font-weight-bold text-dark">{{ $purchase }} Rs</h2>
                                     <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up from Last Month</p>
                                 </div>
                             </div><!--end col-->
@@ -83,7 +83,7 @@
                                                 <div class="icon-info my-3">
                                                 <i class="dripicons-cart bg-soft-warning"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">500</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">{{ $purchase }} Rs</h2>
                                                 <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>35.5%</span> More than Last Month</p>
                                             </div>
                                         </div><!--end col-->
@@ -112,7 +112,7 @@
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-swap bg-soft-primary"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">5</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">{{ $unit }}</h2>
                                                 <p class="mb-1 text-muted">Current Units Available</p>
                                             </div>
                                         </div><!--end col-->
@@ -126,7 +126,7 @@
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-store bg-soft-warning"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">10</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">{{ $category }}</h2>
                                                 <p class="mb-1 text-muted">Current Product Categories</p>
                                             </div>
                                         </div><!--end col-->
@@ -140,7 +140,7 @@
                                                 <div class="icon-info my-3">
                                                     <i class="dripicons-user-group bg-soft-success"></i>
                                                 </div>
-                                                <h2 class="mt-0 font-weight-bold text-dark">35</h2>
+                                                <h2 class="mt-0 font-weight-bold text-dark">{{ $supplier }}</h2>
                                                 <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>11.1%</span> Up from yesterday</p>
                                             </div>
                                         </div><!--end col-->

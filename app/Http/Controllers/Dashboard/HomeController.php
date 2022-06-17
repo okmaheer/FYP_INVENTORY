@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\Supplier;
+use App\Models\Unit;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -24,12 +29,25 @@ class HomeController extends Controller
     public function index()
     {
         $page_title = 'Dashboard';
+        $product = Product::count();
+        $purchase = Purchase::sum('net_total_amount');
+        $supplier = Supplier::count();
+        $category = Category::count();
+        $unit = Unit::count();
         $breadcrumbs = [['text' => $page_title]];
         $viewParams = [
             'breadcrumbs' => $breadcrumbs,
-            'page_title' => $page_title
-        ];
+            'page_title' => $page_title,
+            'product'=> $product,
+            'purchase'=> $purchase,
+            'supplier'=>$supplier,
+            'category'=>$category,
+            'unit'=>$unit
 
+
+        ];
+        
+     
         return view('dashboard.index', $viewParams);
     }
 
