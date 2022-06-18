@@ -89,20 +89,6 @@
                                         </div><!--end col-->
                                     </div><!--end row-->
                                 </div><!--end carousel-item-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-12 align-self-center">
-                                            <div class="text-center">
-                                                <h4 class="mt-0 header-title text-left">New Orders</h4>
-                                                <div class="icon-info my-3">
-                                                    <i class="dripicons-basket bg-soft-info"></i>
-                                                </div>
-                                                <h5 class="mt-0 font-weight-bold text-dark">182</h5>
-                                                <p class="mb-1 text-muted"><span class="text-danger"><i class="mdi mdi-arrow-down"></i>1.5%</span> Down From Last week</p>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div><!--end row-->
-                                </div><!--end carousel-item-->
 
                                 <div class="carousel-item">
                                     <div class="row">
