@@ -6,12 +6,13 @@
             <div class="media-body">
                 {{-- <h5 class="text-light">{{ auth()->user()->getName() }}</h5> --}}
                 <ul class="list-unstyled list-inline mb-0 mt-2">
-                    <li class="list-inline-item">
-                        <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
-                    </li>
                     
                     <li class="list-inline-item">
-                        <a href="#" class=""><i class="mdi mdi-power text-danger"></i></a>
+                        
+                        <form method="post" action="{{ route('logout') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-transparent"><i class="mdi mdi-power text-danger"></i></button>
+                        </form>
                     </li>
                 </ul>
             </div>
