@@ -20,10 +20,10 @@
             </div>
         </div>
 
-        <div class="col-lg-1 mt-4 ml-4">
+        <div class="col-lg-3  mt-4 ml-4">
             <div class="form-group row">
                 {!! Form::submit('Search', array('class' => 'btn btn-success')) !!}
-                {!! Form::submit('Print', array('class' => 'btn btn-info')) !!}
+                <a href="{{ route($route) }}" class="btn btn-dark">Clear</a>
             </div>
         </div>
     </div>

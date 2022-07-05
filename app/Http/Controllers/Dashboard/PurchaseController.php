@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Unit;
 use App\Traits\General;
+use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 
 class PurchaseController extends Controller
@@ -208,8 +209,12 @@ class PurchaseController extends Controller
 
         $filterData = $data = [];
         $report = $this->model->whereHas('supplier');
-
-        // $report = \QueryHelper::filterByDate($request, $report, 'purchase', 'purchases');
+                         if($request->has('start_date') && $request->has('end_date') ){
+                         $report = $report
+                    ->where('purchase_date', '>=', Carbon::parse($request->start_date)->format('Y-m-d'))
+                    ->where('purchase_date', '<=', Carbon::parse($request->end_date)->format('Y-m-d'));
+                         }
+      
         $report = $report->get();
 
         $breadcrumbs = collect([
@@ -233,7 +238,11 @@ class PurchaseController extends Controller
         $report =
             $this->model->with('purchaseDetails.product.category');
 
-        // $report = \QueryHelper::filterByDate($request, $report, 'purchase', 'purchases');
+            if($request->has('start_date') && $request->has('end_date') ){
+                $report = $report
+           ->where('purchase_date', '>=', Carbon::parse($request->start_date)->format('Y-m-d'))
+           ->where('purchase_date', '<=', Carbon::parse($request->end_date)->format('Y-m-d'));
+                }
         $report = $report->paginate(15);
         $breadcrumbs = collect([
             'Dashboard' => route('dashboard'),
